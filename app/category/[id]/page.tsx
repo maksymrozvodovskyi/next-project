@@ -17,7 +17,13 @@ export default async function CategoryPage({ params }: Props) {
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<ProductList category={category} />
+			<div className='space-y-6'>
+				<div className='text-center'>
+					<h1 className='text-3xl font-bold text-gray-900 mb-2 capitalize'>{category}</h1>
+					<p className='text-gray-600'>Products in this category</p>
+				</div>
+				<ProductList category={category} />
+			</div>
 		</HydrationBoundary>
 	)
 }

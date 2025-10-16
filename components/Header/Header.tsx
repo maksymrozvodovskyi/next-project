@@ -7,15 +7,15 @@ export default function Header() {
 				<Link
 					href='/'
 					aria-label='Home'
-					className='text-2xl font-bold text-blue-600 hover:text-blue-800 transition-colors'
+					className='text-xl sm:text-2xl font-bold text-blue-600 hover:text-blue-800 transition-colors'
 				>
 					FakeStore
 				</Link>
 
 				<nav aria-label='Main Navigation'>
-					<ul className='flex items-center space-x-6'>
+					<ul className='flex items-center space-x-4 sm:space-x-6'>
 						<li>
-							<Link href='/' className='text-gray-700 hover:text-blue-600 transition-colors'>
+							<Link href='/' className='text-sm sm:text-base text-gray-700 hover:text-blue-600 transition-colors'>
 								Home
 							</Link>
 						</li>
