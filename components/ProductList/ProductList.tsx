@@ -3,18 +3,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProductsByCategory } from '@/lib/api'
 import ProductItem from '../ProductItem/ProductItem'
+import { ProductListProps, QueryKeys } from '@/types/types'
 
-type Props = {
-	category: string
-}
-
-export default function ProductList({ category }: Props) {
+export default function ProductList({ category, products }: ProductListProps) {
 	const { data, isLoading, error } = useQuery({
-		queryKey: ['products', category],
+		queryKey: [QueryKeys.PRODUCTS, category],
 		queryFn: () => getProductsByCategory(category),
+		initialData: products,
 	})
-
-	console.log('ProductList Debug:', { category, data, isLoading, error })
 
 	if (isLoading)
 		return (

@@ -1,11 +1,8 @@
 'use client'
 
-type Props = {
-	error: Error
-	reset: () => void
-}
+import { ErrorProps } from '@/types/types'
 
-export default function Error({ error, reset }: Props) {
+export default function Error({ error, reset }: ErrorProps) {
 	return (
 		<div>
 			<h2>Error while downloading</h2>

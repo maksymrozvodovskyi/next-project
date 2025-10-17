@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getSingleProduct } from '@/lib/api'
 import { useParams } from 'next/navigation'
+import { QueryKeys } from '@/types/types'
 
 export default function ProductDetailsClient() {
 	const { id } = useParams<{ id: string }>()
@@ -12,7 +13,7 @@ export default function ProductDetailsClient() {
 		isLoading,
 		error,
 	} = useQuery({
-		queryKey: ['product', id],
+		queryKey: [QueryKeys.PRODUCT, id],
 		queryFn: () => getSingleProduct(id),
 		refetchOnMount: true,
 	})
@@ -40,10 +41,10 @@ export default function ProductDetailsClient() {
 
 	return (
 		<div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-4'>
-			<h1 className='text-2xl font-bold text-gray-900'>{product.title}</h1>
-			<div className='text-3xl font-bold text-blue-600'>${product.price}</div>
-			<div className='text-sm text-gray-500 uppercase tracking-wide'>{product.category}</div>
-			<p className='text-gray-700 leading-relaxed'>{product.description}</p>
+			<h1 className='text-2xl font-bold text-gray-900'>{product?.title}</h1>
+			<div className='text-3xl font-bold text-blue-600'>${product?.price}</div>
+			<div className='text-sm text-gray-500 uppercase tracking-wide'>{product?.category}</div>
+			<p className='text-gray-700 leading-relaxed'>{product?.description}</p>
 		</div>
 	)
 }
