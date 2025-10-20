@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProductsByCategory } from '@/lib/api'
 import ProductItem from '../ProductItem'
-import { QueryKeys } from '@/types/enums'
+import { QUERY_KEYS } from '@/types/enums'
 import { Product } from '@/types/productTypes'
 
 export type ProductListProps = {
@@ -13,7 +13,7 @@ export type ProductListProps = {
 
 export default function ProductList({ category, products }: ProductListProps) {
 	const { data, isLoading, error } = useQuery({
-		queryKey: [QueryKeys.PRODUCTS, category],
+		queryKey: [QUERY_KEYS.PRODUCTS, category],
 		queryFn: () => getProductsByCategory(category),
 		initialData: products,
 	})
