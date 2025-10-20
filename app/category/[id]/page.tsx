@@ -20,7 +20,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 					Products in this category
 				</p>
 			</div>
-			<ProductList category={category} products={products} />
+			<ProductList products={products} />
 		</div>
 	)
 }

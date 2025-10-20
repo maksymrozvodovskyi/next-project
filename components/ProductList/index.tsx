@@ -1,17 +1,19 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'next/navigation'
 import { getProductsByCategory } from '@/lib/api'
 import ProductItem from '../ProductItem'
 import { QUERY_KEYS } from '@/types/enums'
 import { Product } from '@/types/productTypes'
 
 export type Props = {
-	category: string
 	products?: Product[]
 }
 
-export default function ProductList({ category, products }: Props) {
+export default function ProductList({ products }: Props) {
+	const params = useParams()
+	const category = params.id as string
 	const { data, isLoading, error } = useQuery({
 		queryKey: [QUERY_KEYS.PRODUCTS, category],
 		queryFn: () => getProductsByCategory(category),
