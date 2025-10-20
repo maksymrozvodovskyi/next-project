@@ -42,13 +42,13 @@ export default function ProductList({ products }: Props) {
 		)
 
 	return (
-		<div className='space-y-6 sm:space-y-8 lg:space-y-10 space-y-1920-lg'>
+		<div className='space-y-6 sm:space-y-8 lg:space-y-10 3xl:space-y-16'>
 			<div className='text-center'>
-				<p className='text-sm sm:text-base lg:text-lg xl:text-xl text-1920-xl text-gray-600'>
+				<p className='text-sm sm:text-base lg:text-lg xl:text-xl 3xl:text-2xl text-gray-600'>
 					Found {data.length} {data.length === 1 ? 'product' : 'products'}
 				</p>
 			</div>
-			<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-5 lg:gap-6 xl:gap-8 gap-1920-xl'>
+			<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 gap-4 sm:gap-5 lg:gap-6 xl:gap-8 3xl:gap-10'>
 				{data.map(item => (
 					<ProductItem key={item.id} item={item} />
 				))}
