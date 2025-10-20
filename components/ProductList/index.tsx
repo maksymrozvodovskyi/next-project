@@ -42,9 +42,6 @@ export default function ProductList({ category, products }: Props) {
 	return (
 		<div className='space-y-6 sm:space-y-8 lg:space-y-10 space-y-1920-lg'>
 			<div className='text-center'>
-				<h2 className='text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-1920-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4'>
-					Products in {category}
-				</h2>
 				<p className='text-sm sm:text-base lg:text-lg xl:text-xl text-1920-xl text-gray-600'>
 					Found {data.length} {data.length === 1 ? 'product' : 'products'}
 				</p>
