@@ -46,8 +46,8 @@ export default function ProductDetailsClient() {
 				{product?.image && (
 					<div className='relative w-full h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden'>
 						<Image
-							src={product.image}
-							alt={product.title || 'Product image'}
+							src={product?.image}
+							alt={product?.title || 'Product image'}
 							fill
 							className='object-cover'
 							sizes='(max-width: 1024px) 100vw, 50vw'
