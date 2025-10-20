@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { getProductsByCategory } from '@/lib/api'
-import ProductItem from '../ProductItem/ProductItem'
+import ProductItem from '../ProductItem'
 import { ProductListProps, QueryKeys } from '@/types/types'
 
 export default function ProductList({ category, products }: ProductListProps) {
