@@ -1,29 +1,26 @@
-import { QueryClient, HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { getProductsByCategory } from '@/lib/api'
-import ProductList from '@/components/ProductList/ProductList'
+import ProductList from '@/components/ProductList'
 
-type Props = {
-	params: Promise<{ id: string }>
+export type CategoryPageProps = {
+	params: Promise<{ category: string }>
 }
 
-export default async function CategoryPage({ params }: Props) {
-	const { id: category } = await params
-	const queryClient = new QueryClient()
+export default async function CategoryPage({ params }: CategoryPageProps) {
+	const { category: category } = await params
 
-	await queryClient.prefetchQuery({
-		queryKey: ['products', category],
-		queryFn: () => getProductsByCategory(category),
-	})
+	const products = await getProductsByCategory(category)
 
 	return (
-		<HydrationBoundary state={dehydrate(queryClient)}>
-			<div className='space-y-6'>
-				<div className='text-center'>
-					<h1 className='text-3xl font-bold text-gray-900 mb-2 capitalize'>{category}</h1>
-					<p className='text-gray-600'>Products in this category</p>
-				</div>
-				<ProductList category={category} />
+		<div className='space-y-6 sm:space-y-8 lg:space-y-12 3xl:space-y-16'>
+			<div className='text-center'>
+				<h1 className='text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6 capitalize'>
+					{category}
+				</h1>
+				<p className='text-sm sm:text-base lg:text-lg xl:text-xl 3xl:text-2xl text-gray-600'>
+					Products in this category
+				</p>
 			</div>
-		</HydrationBoundary>
+			<ProductList products={products} />
+		</div>
 	)
 }

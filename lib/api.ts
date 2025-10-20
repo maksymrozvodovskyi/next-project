@@ -1,19 +1,7 @@
 import axios from 'axios'
+import { Product, ProductListResponse } from '@/types/productTypes'
 
-export type Product = {
-	id: number
-	title: string
-	price: number
-	description: string
-	category: string
-	image: string
-}
-
-export type ProductListResponse = {
-	products: Product[]
-}
-
-axios.defaults.baseURL = 'https://fakestoreapi.com'
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL
 
 export const getCategories = async () => {
 	const res = await axios.get<string[]>('/products/categories')
@@ -30,7 +18,7 @@ export const getProducts = async () => {
 	return res.data
 }
 
-export const getSingleProduct = async (id: string) => {
+export const getProductById = async (id: string) => {
 	const res = await axios.get<Product>(`/products/${id}`)
 	return res.data
 }
