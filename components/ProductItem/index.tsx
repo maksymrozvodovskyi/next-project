@@ -1,5 +1,9 @@
-import { ProductItemProps } from '@/types/types'
 import Link from 'next/link'
+import { Product } from '@/types/productTypes'
+
+export type ProductItemProps = {
+	item: Product
+}
 
 export default function ProductItem({ item }: ProductItemProps) {
 	return (

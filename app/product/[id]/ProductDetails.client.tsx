@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProductById } from '@/lib/api'
 import { useParams } from 'next/navigation'
-import { QueryKeys } from '@/types/types'
+import { QueryKeys } from '@/types/enums'
 
 export default function ProductDetailsClient() {
 	const { id } = useParams<{ id: string }>()

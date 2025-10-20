@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Product, ProductListResponse } from '@/types/types'
+import { Product, ProductListResponse } from '@/types/productTypes'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL
 

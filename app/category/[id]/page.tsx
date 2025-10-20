@@ -1,7 +1,10 @@
 import { getProductsByCategory, categoryExists } from '@/lib/api'
-import ProductList from '@/components/ProductList/ProductList'
-import { CategoryPageProps } from '@/types/types'
+import ProductList from '@/components/ProductList'
 import { notFound } from 'next/navigation'
+
+export type CategoryPageProps = {
+	params: Promise<{ id: string }>
+}
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
 	const { id: category } = await params
