@@ -2,11 +2,11 @@ import { getProductsByCategory } from '@/lib/api'
 import ProductList from '@/components/ProductList'
 
 export type CategoryPageProps = {
-	params: Promise<{ id: string }>
+	params: Promise<{ category: string }>
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-	const { id: category } = await params
+	const { category: category } = await params
 
 	const products = await getProductsByCategory(category)
 
