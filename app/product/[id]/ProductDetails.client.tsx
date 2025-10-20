@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { getSingleProduct } from '@/lib/api'
+import { getProductById } from '@/lib/api'
 import { useParams } from 'next/navigation'
 import { QueryKeys } from '@/types/types'
 
@@ -14,7 +14,7 @@ export default function ProductDetailsClient() {
 		error,
 	} = useQuery({
 		queryKey: [QueryKeys.PRODUCT, id],
-		queryFn: () => getSingleProduct(id),
+		queryFn: () => getProductById(id),
 		refetchOnMount: true,
 	})
 

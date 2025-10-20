@@ -1,5 +1,5 @@
 import { QueryClient, dehydrate, HydrationBoundary } from '@tanstack/react-query'
-import { getSingleProduct } from '@/lib/api'
+import { getProductById } from '@/lib/api'
 import ProductDetailsClient from './ProductDetails.client'
 import { ProductPageProps, QueryKeys } from '@/types/types'
 
@@ -9,7 +9,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
 	await queryClient.prefetchQuery({
 		queryKey: [QueryKeys.PRODUCT, id],
-		queryFn: () => getSingleProduct(id),
+		queryFn: () => getProductById(id),
 	})
 
 	return (
