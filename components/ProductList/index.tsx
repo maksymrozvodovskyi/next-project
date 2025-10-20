@@ -6,12 +6,12 @@ import ProductItem from '../ProductItem'
 import { QUERY_KEYS } from '@/types/enums'
 import { Product } from '@/types/productTypes'
 
-export type ProductListProps = {
+export type Props = {
 	category: string
 	products?: Product[]
 }
 
-export default function ProductList({ category, products }: ProductListProps) {
+export default function ProductList({ category, products }: Props) {
 	const { data, isLoading, error } = useQuery({
 		queryKey: [QUERY_KEYS.PRODUCTS, category],
 		queryFn: () => getProductsByCategory(category),

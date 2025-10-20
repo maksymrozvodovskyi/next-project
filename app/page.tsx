@@ -1,6 +1,9 @@
 import CategoryList from '@/components/CategoryList'
+import { getCategories } from '@/lib/api'
 
-export default function Home() {
+export default async function Home() {
+	const categories = await getCategories()
+
 	return (
 		<section className='space-y-6 sm:space-y-8 lg:space-y-12 space-y-1920-lg'>
 			<div className='text-center'>
@@ -8,7 +11,7 @@ export default function Home() {
 					Welcome to <span className='text-blue-600'>FakeStore</span>
 				</h1>
 			</div>
-			<CategoryList />
+			<CategoryList categories={categories} />
 		</section>
 	)
 }

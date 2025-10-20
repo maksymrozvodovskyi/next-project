@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { Product } from '@/types/productTypes'
 
-export type ProductItemProps = {
+export type Props = {
 	item: Product
 }
 
-export default function ProductItem({ item }: ProductItemProps) {
+export default function ProductItem({ item }: Props) {
 	return (
 		<li className='border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-5 xl:p-6 p-1920-xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 h-full hover:scale-105'>
 			<Link href={`/product/${item.id}`} className='block h-full flex flex-col'>

@@ -1,9 +1,10 @@
-import { getCategories } from '@/lib/api'
 import Link from 'next/link'
 
-export default async function CategoryList() {
-	const categories = await getCategories()
+type Props = {
+	categories: string[]
+}
 
+export default async function CategoryList({ categories }: Props) {
 	return (
 		<div className='space-y-4 sm:space-y-6 lg:space-y-8 space-y-1920-lg'>
 			<h2 className='text-lg sm:text-xl lg:text-2xl xl:text-3xl text-1920-3xl font-semibold text-gray-900 text-center'>

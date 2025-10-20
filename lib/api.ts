@@ -22,12 +22,3 @@ export const getProductById = async (id: string) => {
 	const res = await axios.get<Product>(`/products/${id}`)
 	return res.data
 }
-
-export const categoryExists = async (category: string) => {
-	try {
-		const categories = await getCategories()
-		return { exists: categories.includes(category), error: null }
-	} catch (error) {
-		return { exists: false, error: error }
-	}
-}
