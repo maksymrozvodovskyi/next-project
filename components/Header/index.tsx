@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { getCategories } from '@/lib/api'
 import CartButton from '@/components/Cart/CartButton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -18,7 +18,6 @@ export default async function Header() {
 			<div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
 				<div className='relative flex h-16 items-center justify-between'>
 					<div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
-						{/* Mobile menu button*/}
 						<DisclosureButton className='group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500'>
 							<span className='absolute -inset-0.5' />
 							<span className='sr-only'>Open main menu</span>
@@ -47,8 +46,6 @@ export default async function Header() {
 										{item.name}
 									</Link>
 								))}
-
-								{/* Categories dropdown */}
 								<Menu as='div' className='relative z-50'>
 									<MenuButton
 										className={classNames(
@@ -80,8 +77,6 @@ export default async function Header() {
 					</div>
 					<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 						<CartButton />
-
-						{/* Profile dropdown */}
 						<Menu as='div' className='relative ml-3'>
 							<MenuButton className='relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'>
 								<span className='absolute -inset-1' />
@@ -94,7 +89,6 @@ export default async function Header() {
 									<AvatarFallback className='bg-gray-600 text-white text-sm font-medium'>U</AvatarFallback>
 								</Avatar>
 							</MenuButton>
-
 							<MenuItems
 								transition
 								className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
@@ -128,7 +122,6 @@ export default async function Header() {
 					</div>
 				</div>
 			</div>
-
 			<DisclosurePanel className='sm:hidden'>
 				<div className='space-y-1 px-2 pt-2 pb-3'>
 					{navigation.map(item => (
@@ -145,8 +138,6 @@ export default async function Header() {
 							{item.name}
 						</DisclosureButton>
 					))}
-
-					{/* Mobile Categories section */}
 					<div className='px-3 py-2'>
 						<div className='text-gray-300 text-base font-medium mb-1'>Categories</div>
 						<div className='pl-4 space-y-1'>
