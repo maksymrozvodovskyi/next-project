@@ -26,7 +26,7 @@ export default function ProductDetailsClient() {
 
 	if (isLoading)
 		return (
-			<div className='min-h-screen bg-gray-50 py-12'>
+			<div className='bg-gray-50 py-12'>
 				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='mb-8'>
 						<div className='h-4 bg-gray-200 rounded w-32 animate-pulse'></div>
@@ -56,7 +56,7 @@ export default function ProductDetailsClient() {
 
 	if (error)
 		return (
-			<div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+			<div className='bg-gray-50 flex items-center justify-center flex-1'>
 				<div className='text-center'>
 					<div className='mb-4'>
 						<svg className='mx-auto h-12 w-12 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -82,7 +82,7 @@ export default function ProductDetailsClient() {
 
 	if (!product)
 		return (
-			<div className='min-h-screen bg-gray-50 flex items-center justify-center'>
+			<div className='bg-gray-50 flex items-center justify-center flex-1'>
 				<div className='text-center'>
 					<div className='mb-4'>
 						<svg className='mx-auto h-12 w-12 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -122,7 +122,7 @@ export default function ProductDetailsClient() {
 	}
 
 	return (
-		<div className='min-h-screen bg-gray-50 py-8 lg:py-12'>
+		<div className='bg-gray-50 py-8 lg:py-12'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<nav className='mb-8'>
 					<div className='flex items-center space-x-2 text-sm text-gray-500'>
