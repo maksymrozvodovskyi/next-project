@@ -5,7 +5,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import TenStackProvider from '@/components/TenStackProvider'
 import { CartProvider } from '@/lib/cart-context'
-import { FilterProvider } from '@/lib/filter-context'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import CartDrawer from '@/components/Cart/CartDrawer'
 
 const roboto = Roboto({
@@ -28,18 +28,18 @@ export default function RootLayout({
 	return (
 		<html lang='en' className='h-full'>
 			<body className={`${roboto.variable} h-full flex flex-col`} suppressHydrationWarning>
-				<TenStackProvider>
-					<CartProvider>
-						<FilterProvider>
+				<NuqsAdapter>
+					<TenStackProvider>
+						<CartProvider>
 							<div className='flex flex-col h-full'>
 								<Header />
 								<main className='flex-1'>{children}</main>
 								<Footer />
 								<CartDrawer />
 							</div>
-						</FilterProvider>
-					</CartProvider>
-				</TenStackProvider>
+						</CartProvider>
+					</TenStackProvider>
+				</NuqsAdapter>
 			</body>
 		</html>
 	)

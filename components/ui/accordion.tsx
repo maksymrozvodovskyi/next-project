@@ -10,7 +10,7 @@ function cn(...classes: (string | undefined | null | false)[]) {
 interface AccordionContextType {
 	value: string | string[]
 	type: 'single' | 'multiple'
-	collapsible: boolean
+	isCollapsible: boolean
 	onValueChange: (value: string) => void
 	isItemOpen: (value: string) => boolean
 }
@@ -21,10 +21,10 @@ const Accordion = React.forwardRef<
 	HTMLDivElement,
 	React.HTMLAttributes<HTMLDivElement> & {
 		type?: 'single' | 'multiple'
-		collapsible?: boolean
+		isCollapsible?: boolean
 		defaultValue?: string
 	}
->(({ className, children, type = 'single', collapsible = false, defaultValue, ...props }, ref) => {
+>(({ className, children, type = 'single', isCollapsible = false, defaultValue, ...props }, ref) => {
 	const [value, setValue] = React.useState<string | string[]>(type === 'multiple' ? [] : defaultValue || '')
 
 	const handleValueChange = React.useCallback(
@@ -37,14 +37,14 @@ const Accordion = React.forwardRef<
 				setValue(newValue)
 			} else {
 				const currentValue = value as string
-				if (collapsible && currentValue === itemValue) {
+				if (isCollapsible && currentValue === itemValue) {
 					setValue('')
 				} else {
 					setValue(itemValue)
 				}
 			}
 		},
-		[value, type, collapsible]
+		[value, type, isCollapsible]
 	)
 
 	const isItemOpen = React.useCallback(
@@ -61,11 +61,11 @@ const Accordion = React.forwardRef<
 		() => ({
 			value,
 			type,
-			collapsible,
+			isCollapsible,
 			onValueChange: handleValueChange,
 			isItemOpen,
 		}),
-		[value, type, collapsible, handleValueChange, isItemOpen]
+		[value, type, isCollapsible, handleValueChange, isItemOpen]
 	)
 
 	return (

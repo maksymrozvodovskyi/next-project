@@ -18,6 +18,7 @@ function classNames(...classes: string[]) {
 
 export default async function Header() {
 	const categories = await getCategories()
+
 	return (
 		<Disclosure as='nav' className='sticky top-0 bg-gray-800 z-50'>
 			<div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>

@@ -2,14 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { PencilIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
-
-type ProfileData = {
-	fullName: string
-	email: string
-	address: string
-	phoneNumber: string
-	postalCode: string
-}
+import { ProfileData } from '@/types/productTypes'
 
 export default function ProfilePage() {
 	const [isEditing, setIsEditing] = useState(false)

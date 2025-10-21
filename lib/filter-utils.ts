@@ -1,8 +1,17 @@
-import { Product, FilterState } from '@/types/productTypes'
+import { Product } from '@/types/productTypes'
 
-export function filterProducts(products: Product[], filterState: FilterState): Product[] {
-	return products.filter(product => {
-		if (product.price < filterState.priceRange[0] || product.price > filterState.priceRange[1]) {
+export interface URLFilterState {
+	searchQuery: string
+	minPrice: number
+	maxPrice: number
+	categories: string[]
+	sortBy: string
+	page: number
+}
+
+export function filterProducts(products: Product[], filterState: URLFilterState): Product[] {
+	let filteredProducts = products.filter(product => {
+		if (product.price < filterState.minPrice || product.price > filterState.maxPrice) {
 			return false
 		}
 
@@ -16,22 +25,37 @@ export function filterProducts(products: Product[], filterState: FilterState): P
 			}
 		}
 
-		for (const [filterId, selectedValues] of Object.entries(filterState.selectedFilters)) {
-			if (selectedValues.length === 0) continue
-
-			switch (filterId) {
-				case 'category':
-					if (!selectedValues.includes(product.category)) {
-						return false
-					}
-					break
-				default:
-					break
+		if (filterState.categories.length > 0) {
+			if (!filterState.categories.includes(product.category)) {
+				return false
 			}
 		}
 
 		return true
 	})
+
+	if (filterState.sortBy) {
+		filteredProducts = sortProducts(filteredProducts, filterState.sortBy)
+	}
+
+	return filteredProducts
+}
+
+export function sortProducts(products: Product[], sortBy: string): Product[] {
+	const sortedProducts = [...products]
+
+	switch (sortBy) {
+		case 'price-asc':
+			return sortedProducts.sort((a, b) => a.price - b.price)
+		case 'price-desc':
+			return sortedProducts.sort((a, b) => b.price - a.price)
+		case 'name-asc':
+			return sortedProducts.sort((a, b) => a.title.localeCompare(b.title))
+		case 'name-desc':
+			return sortedProducts.sort((a, b) => b.title.localeCompare(a.title))
+		default:
+			return sortedProducts
+	}
 }
 
 export function getFilterOptionsFromProducts(products: Product[]): {

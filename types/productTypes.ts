@@ -22,7 +22,7 @@ export type ProductListResponse = {
 export type FilterOption = {
 	value: string
 	label: string
-	checked: boolean
+	isChecked: boolean
 }
 
 export type Filter = {
@@ -35,4 +35,12 @@ export type FilterState = {
 	priceRange: [number, number]
 	selectedFilters: Record<string, string[]>
 	searchQuery: string
+}
+
+export type ProfileData = {
+	fullName: string
+	email: string
+	address: string
+	phoneNumber: string
+	postalCode: string
 }

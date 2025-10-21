@@ -1,12 +1,12 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
-interface AccordionDemoProps {
+interface Props {
 	description?: string
 }
 
-export function AccordionDemo({ description }: AccordionDemoProps) {
+export function AccordionDemo({ description }: Props) {
 	return (
-		<Accordion type='single' collapsible className='w-full' defaultValue='item-1'>
+		<Accordion type='single' isCollapsible className='w-full' defaultValue='item-1'>
 			<AccordionItem value='item-1'>
 				<AccordionTrigger>Product Information</AccordionTrigger>
 				<AccordionContent className='flex flex-col gap-4 text-balance'>
