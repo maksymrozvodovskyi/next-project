@@ -5,10 +5,10 @@ import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
 import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon } from '@heroicons/react/20/solid'
 import { useFilters } from '@/lib/filter-context'
-import { Product } from '@/types/productTypes'
+import type { Product } from '@/types/productTypes'
 import { getFilterOptionsFromProducts } from '@/lib/filter-utils'
 
-interface FilterSidebarProps {
+type FilterSidebarProps = {
 	children: React.ReactNode
 	title?: string
 	products?: Product[]

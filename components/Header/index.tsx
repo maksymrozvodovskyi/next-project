@@ -7,6 +7,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const navigation = [{ name: 'Home', href: '/', current: false }]
 
+function formatCategoryName(category: string): string {
+	const decoded = decodeURIComponent(category)
+	return decoded.replace(/\b\w/g, l => l.toUpperCase()).replace(/'[A-Z]/g, match => match.toLowerCase())
+}
+
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ')
 }
@@ -66,7 +71,7 @@ export default async function Header() {
 													href={`/category/${category}`}
 													className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
 												>
-													{category.replace(/([A-Z])/g, ' $1').trim()}
+													{formatCategoryName(category)}
 												</Link>
 											</MenuItem>
 										))}
@@ -148,7 +153,7 @@ export default async function Header() {
 									href={`/category/${category}`}
 									className='block text-gray-400 hover:text-white hover:bg-white/5 rounded-md px-3 py-2 text-sm font-medium'
 								>
-									{category.replace(/([A-Z])/g, ' $1').trim()}
+									{formatCategoryName(category)}
 								</DisclosureButton>
 							))}
 						</div>

@@ -6,6 +6,11 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getCategories } from '@/lib/api'
 
+function formatCategoryName(category: string): string {
+	const decoded = decodeURIComponent(category)
+	return decoded.replace(/\b\w/g, l => l.toUpperCase()).replace(/'[A-Z]/g, match => match.toLowerCase())
+}
+
 export default function Hero() {
 	const [categories, setCategories] = useState<string[]>([])
 
@@ -64,7 +69,7 @@ export default function Hero() {
 												href={`/category/${category}`}
 												className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
 											>
-												{category.replace(/([A-Z])/g, ' $1').trim()}
+												{formatCategoryName(category)}
 											</Link>
 										</MenuItem>
 									))}
