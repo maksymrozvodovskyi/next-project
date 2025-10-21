@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import './globals.css'
 import TenStackProvider from '@/components/TenStackProvider'
+import { CartProvider } from '@/lib/cart-context'
+import CartDrawer from '@/components/Cart/CartDrawer'
 
 const roboto = Roboto({
 	subsets: ['latin'],
@@ -26,11 +28,14 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={roboto.variable}>
 				<TenStackProvider>
-					<div>
-						<Header />
-						<main>{children}</main>
-						<Footer />
-					</div>
+					<CartProvider>
+						<div>
+							<Header />
+							<main>{children}</main>
+							<Footer />
+							<CartDrawer />
+						</div>
+					</CartProvider>
 				</TenStackProvider>
 			</body>
 		</html>

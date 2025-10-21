@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { getCategories } from '@/lib/api'
+import CartButton from '@/components/Cart/CartButton'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const navigation = [{ name: 'Home', href: '/', current: false }]
 
@@ -77,27 +79,20 @@ export default async function Header() {
 						</div>
 					</div>
 					<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-						<button
-							type='button'
-							className='relative rounded-full p-1 text-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500'
-						>
-							<span className='absolute -inset-1.5' />
-							<span className='sr-only'>View notifications</span>
-							<BellIcon aria-hidden='true' className='size-6' />
-						</button>
+						<CartButton />
 
 						{/* Profile dropdown */}
 						<Menu as='div' className='relative ml-3'>
 							<MenuButton className='relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'>
 								<span className='absolute -inset-1.5' />
 								<span className='sr-only'>Open user menu</span>
-								{/* <Image
-									alt=''
-									src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-									width={32}
-									height={32}
-									className='size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10'
-								/> */}
+								<Avatar className='size-8'>
+									<AvatarImage
+										src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+										alt='User avatar'
+									/>
+									<AvatarFallback className='bg-gray-600 text-white text-sm font-medium'>U</AvatarFallback>
+								</Avatar>
 							</MenuButton>
 
 							<MenuItems

@@ -9,11 +9,13 @@ import { ArrowLeftIcon, HeartIcon, ShoppingCartIcon } from '@heroicons/react/24/
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 import { AccordionDemo } from '@/components/ProductDetails/AccordionDemo'
+import { useCart } from '@/lib/cart-context'
 
 export default function ProductDetailsClient() {
 	const { id } = useParams<{ id: string }>()
 	const router = useRouter()
 	const [isFavorite, setIsFavorite] = useState(false)
+	const { addItem, openCart } = useCart()
 
 	const {
 		data: product,
@@ -110,7 +112,16 @@ export default function ProductDetailsClient() {
 		)
 
 	const handleAddToCart = () => {
-		console.log('Added to cart:', product.id)
+		if (product) {
+			addItem({
+				id: product.id,
+				name: product.title,
+				price: product.price,
+				quantity: 1,
+				image: product.image,
+			})
+			openCart()
+		}
 	}
 
 	const toggleFavorite = () => {

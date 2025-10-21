@@ -1,6 +1,26 @@
 'use client'
 
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { getCategories } from '@/lib/api'
+
 export default function Hero() {
+	const [categories, setCategories] = useState<string[]>([])
+
+	useEffect(() => {
+		const fetchCategories = async () => {
+			try {
+				const data = await getCategories()
+				setCategories(data)
+			} catch (error) {
+				console.error('Error fetching categories:', error)
+			}
+		}
+		fetchCategories()
+	}, [])
+
 	return (
 		<div className='bg-gray-900'>
 			<div className='relative isolate px-6 pt-14 lg:px-8'>
@@ -25,16 +45,31 @@ export default function Hero() {
 							Discover a wide range of quality products across various categories. We offer the best products at
 							affordable prices with fast and reliable delivery worldwide.
 						</p>
-						<div className='mt-10 flex items-center justify-center gap-x-6'>
-							<a
-								href='/products'
-								className='rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
-							>
-								Shop products
-							</a>
-							<a href='/categories' className='text-sm/6 font-semibold text-white'>
-								View categories <span aria-hidden='true'>→</span>
-							</a>
+						<div className='mt-10 flex flex-wrap items-center justify-center gap-2 md:flex-row'>
+							<Menu as='div' className='relative'>
+								<MenuButton
+									as={Button}
+									variant='outline'
+									className='bg-transparent border-white text-white hover:bg-white hover:text-gray-900 inline-flex items-center'
+								>
+									Shop products
+								</MenuButton>
+								<MenuItems
+									transition
+									className='absolute left-1/2 transform -translate-x-1/2 z-50 mt-2 w-48 origin-top rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
+								>
+									{categories.map(category => (
+										<MenuItem key={category}>
+											<Link
+												href={`/category/${category}`}
+												className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
+											>
+												{category.replace(/([A-Z])/g, ' $1').trim()}
+											</Link>
+										</MenuItem>
+									))}
+								</MenuItems>
+							</Menu>
 						</div>
 					</div>
 				</div>

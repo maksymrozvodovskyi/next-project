@@ -11,8 +11,10 @@
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@tanstack/react-query": "^5.90.3",
     "axios": "^1.12.2",
+    "lucide-react": "^0.546.0",
     "next": "15.5.5",
     "react": "19.1.0",
     "react-dom": "19.1.0"
