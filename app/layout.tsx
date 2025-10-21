@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={roboto.variable}>
+			<body className={roboto.variable} suppressHydrationWarning>
 				<TenStackProvider>
 					<CartProvider>
 						<div>

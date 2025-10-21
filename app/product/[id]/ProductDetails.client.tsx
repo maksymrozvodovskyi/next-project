@@ -5,16 +5,13 @@ import { getProductById } from '@/lib/api'
 import { useParams, useRouter } from 'next/navigation'
 import { QUERY_KEYS } from '@/types/enums'
 import Image from 'next/image'
-import { ArrowLeftIcon, HeartIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid'
-import { useState } from 'react'
+import { ArrowLeftIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { AccordionDemo } from '@/components/ProductDetails/AccordionDemo'
 import { useCart } from '@/lib/cart-context'
 
 export default function ProductDetailsClient() {
 	const { id } = useParams<{ id: string }>()
 	const router = useRouter()
-	const [isFavorite, setIsFavorite] = useState(false)
 	const { addItem, openCart } = useCart()
 
 	const {
@@ -124,10 +121,6 @@ export default function ProductDetailsClient() {
 		}
 	}
 
-	const toggleFavorite = () => {
-		setIsFavorite(!isFavorite)
-	}
-
 	return (
 		<div className='min-h-screen bg-gray-50 py-8 lg:py-12'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -184,17 +177,6 @@ export default function ProductDetailsClient() {
 								>
 									<ShoppingCartIcon className='h-6 w-6' />
 									<span>Add to Cart</span>
-								</button>
-
-								<button
-									onClick={toggleFavorite}
-									className={`p-4 rounded-xl border-2 transition-colors ${
-										isFavorite
-											? 'border-red-500 text-red-500 bg-red-50'
-											: 'border-gray-300 text-gray-400 hover:border-gray-400 hover:text-gray-500'
-									}`}
-								>
-									{isFavorite ? <HeartSolidIcon className='h-6 w-6' /> : <HeartIcon className='h-6 w-6' />}
 								</button>
 							</div>
 
