@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,15 +8,13 @@ module.exports = {
 	],
 	theme: {
 		extend: {
-			screens: {
-				'3xl': '1920px',
-			},
-			maxWidth: {
-				'8xl': '1408px',
-				'9xl': '1536px',
-				'10xl': '1600px',
+			colors: {
+				background: 'var(--background)',
+				foreground: 'var(--foreground)',
 			},
 		},
 	},
 	plugins: [],
 }
+
+export default config

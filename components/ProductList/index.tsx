@@ -3,7 +3,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
 import { getProductsByCategory } from '@/lib/api'
-import ProductItem from '../ProductItem'
+import Link from 'next/link'
+import Image from 'next/image'
 import { QUERY_KEYS } from '@/types/enums'
 import { Product } from '@/types/productTypes'
 
@@ -22,37 +23,47 @@ export default function ProductList({ products }: Props) {
 
 	if (isLoading)
 		return (
-			<div className='flex justify-center items-center py-12 lg:py-16'>
-				<div className='animate-spin rounded-full h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 border-b-2 border-blue-600' />
+			<div>
+				<div />
 			</div>
 		)
 
-	if (error)
-		return (
-			<div className='bg-red-50 border border-red-200 rounded-lg p-4 sm:p-6 lg:p-8 text-red-700 text-center text-sm sm:text-base lg:text-lg'>
-				Error loading products: {error.message}
-			</div>
-		)
+	if (error) return <div>Error loading products: {error.message}</div>
 
-	if (!data || data.length === 0)
-		return (
-			<div className='bg-gray-50 border border-gray-200 rounded-lg p-6 sm:p-8 lg:p-12 text-center text-gray-600 text-sm sm:text-base lg:text-lg'>
-				No products found
-			</div>
-		)
+	if (!data || data.length === 0) return <div>No products found</div>
 
 	return (
-		<div className='space-y-6 sm:space-y-8 lg:space-y-10 3xl:space-y-16'>
-			<div className='text-center'>
-				<p className='text-sm sm:text-base lg:text-lg xl:text-xl 3xl:text-2xl text-gray-600'>
-					Found {data.length} {data.length === 1 ? 'product' : 'products'}
-				</p>
+		<div className='bg-white'>
+			<div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8'>
+				<h2 className='text-2xl font-bold tracking-tight text-gray-900'>Products</h2>
+
+				<div className='mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
+					{data.map(product => (
+						<div key={product.id} className='group relative'>
+							<Link href={`/product/${product.id}`}>
+								{product?.image && (
+									<Image
+										alt={product.title || 'Product image'}
+										src={product.image}
+										width={400}
+										height={400}
+										className='aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80'
+									/>
+								)}
+								<div className='mt-4 flex justify-between'>
+									<div>
+										<h3 className='text-sm text-gray-700'>
+											<span aria-hidden='true' className='absolute inset-0' />
+											{product.title}
+										</h3>
+									</div>
+									<p className='text-lg font-medium text-gray-900'>${product.price}</p>
+								</div>
+							</Link>
+						</div>
+					))}
+				</div>
 			</div>
-			<ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 gap-4 sm:gap-5 lg:gap-6 xl:gap-8 3xl:gap-10'>
-				{data.map(item => (
-					<ProductItem key={item.id} item={item} />
-				))}
-			</ul>
 		</div>
 	)
 }
