@@ -1,22 +1,19 @@
 import { getProductsByCategory } from '@/lib/api'
 import ProductList from '@/components/ProductList'
+import FilterSidebar from '@/components/FilterSidebar'
 
 export type CategoryPageProps = {
-	params: Promise<{ category: string }>
+	params: Promise<{ id: string }>
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-	const { category: category } = await params
+	const { id: categoryId } = await params
 
-	const products = await getProductsByCategory(category)
-	console.log(products)
+	const products = await getProductsByCategory(categoryId)
 
 	return (
-		<div className='bg-gray-50'>
-			<div className='px-4 sm:px-6 lg:px-8 py-8'>
-				<h1 className='text-3xl font-bold text-gray-900 capitalize'>{category}</h1>
-			</div>
+		<FilterSidebar title={categoryId.charAt(0).toUpperCase() + categoryId.slice(1)} products={products}>
 			<ProductList products={products} />
-		</div>
+		</FilterSidebar>
 	)
 }

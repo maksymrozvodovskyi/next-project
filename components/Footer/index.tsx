@@ -4,9 +4,7 @@ export default function Footer() {
 	return (
 		<footer className='bg-gray-800 text-white'>
 			<div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-				{/* Main footer content */}
 				<div className='py-12'>
-					{/* Company info */}
 					<div className='text-center max-w-md mx-auto'>
 						<Link href='/' className='text-2xl font-bold text-white mb-4 block'>
 							FakeStore
@@ -14,7 +12,6 @@ export default function Footer() {
 						<p className='text-gray-300 mb-6'>
 							Making the world a better place through constructing elegant hierarchies for your shopping needs.
 						</p>
-						{/* Social links */}
 						<div className='flex justify-center space-x-4'>
 							<a
 								href='#'
@@ -52,7 +49,6 @@ export default function Footer() {
 					</div>
 				</div>
 
-				{/* Bottom bar */}
 				<div className='border-t border-gray-700 py-6'>
 					<div className='flex flex-col md:flex-row justify-between items-center'>
 						<p className='text-gray-300 text-sm'>&copy; 2024 FakeStore, Inc. All rights reserved.</p>

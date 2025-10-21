@@ -1,5 +1,7 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
+
 export type ErrorProps = {
 	error: Error
 	reset: () => void
@@ -7,10 +9,16 @@ export type ErrorProps = {
 
 export default function Error({ error, reset }: ErrorProps) {
 	return (
-		<div>
-			<h2>Error while downloading</h2>
-			<p>{error.message}</p>
-			<button onClick={reset}>Try again</button>
+		<div className='min-h-screen flex items-center justify-center bg-gray-50 px-4'>
+			<div className='max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center'>
+				<h2 className='text-2xl font-bold text-gray-900 mb-4'>Error while downloading</h2>
+
+				<p className='text-gray-600 mb-8 leading-relaxed'>{error.message}</p>
+
+				<Button onClick={reset} className='w-full' size='lg'>
+					Try again
+				</Button>
+			</div>
 		</div>
 	)
 }

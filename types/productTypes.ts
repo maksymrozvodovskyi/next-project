@@ -18,3 +18,21 @@ export type CartItem = {
 export type ProductListResponse = {
 	products: Product[]
 }
+
+export type FilterOption = {
+	value: string
+	label: string
+	checked: boolean
+}
+
+export type Filter = {
+	id: string
+	name: string
+	options: FilterOption[]
+}
+
+export type FilterState = {
+	priceRange: [number, number]
+	selectedFilters: Record<string, string[]>
+	searchQuery: string
+}

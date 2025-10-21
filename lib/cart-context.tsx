@@ -107,7 +107,6 @@ const CartContext = createContext<CartContextType | undefined>(undefined)
 export function CartProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(cartReducer, initialState)
 
-	// Load cart from localStorage on mount
 	useEffect(() => {
 		const savedCart = localStorage.getItem('cart')
 		if (savedCart) {
@@ -120,7 +119,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		}
 	}, [])
 
-	// Save cart to localStorage whenever items change
 	useEffect(() => {
 		localStorage.setItem('cart', JSON.stringify(state.items))
 	}, [state.items])

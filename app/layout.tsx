@@ -5,6 +5,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import TenStackProvider from '@/components/TenStackProvider'
 import { CartProvider } from '@/lib/cart-context'
+import { FilterProvider } from '@/lib/filter-context'
 import CartDrawer from '@/components/Cart/CartDrawer'
 
 const roboto = Roboto({
@@ -29,12 +30,14 @@ export default function RootLayout({
 			<body className={`${roboto.variable} h-full flex flex-col`} suppressHydrationWarning>
 				<TenStackProvider>
 					<CartProvider>
-						<div className='flex flex-col h-full'>
-							<Header />
-							<main className='flex-1'>{children}</main>
-							<Footer />
-							<CartDrawer />
-						</div>
+						<FilterProvider>
+							<div className='flex flex-col h-full'>
+								<Header />
+								<main className='flex-1'>{children}</main>
+								<Footer />
+								<CartDrawer />
+							</div>
+						</FilterProvider>
 					</CartProvider>
 				</TenStackProvider>
 			</body>
