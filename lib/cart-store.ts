@@ -26,11 +26,9 @@ type CartStore = CartState & CartActions
 export const useCartStore = create<CartStore>()(
 	persist(
 		(set, get) => ({
-			// Initial state
 			items: [],
 			isOpen: false,
 
-			// Actions
 			addItem: (item: CartItem) => {
 				set(state => {
 					const existingItem = state.items.find(existingItem => existingItem.id === item.id)
