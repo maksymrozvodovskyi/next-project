@@ -1,27 +1,10 @@
-'use client'
+import HeroMenu from '@/components/Hero/HeroMenu'
 
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { getCategories } from '@/lib/api'
-import { formatCategoryName } from '@/lib/utils'
+export type Props = {
+	categories: string[]
+}
 
-export default function Hero() {
-	const [categories, setCategories] = useState<string[]>([])
-
-	useEffect(() => {
-		const fetchCategories = async () => {
-			try {
-				const data = await getCategories()
-				setCategories(data)
-			} catch (error) {
-				console.error('Error fetching categories:', error)
-			}
-		}
-		fetchCategories()
-	}, [])
-
+export default function Hero({ categories }: Props) {
 	return (
 		<div className='bg-gray-900'>
 			<div className='relative isolate px-6 pt-14 lg:px-8'>
@@ -47,30 +30,7 @@ export default function Hero() {
 							affordable prices with fast and reliable delivery worldwide.
 						</p>
 						<div className='mt-10 flex flex-wrap items-center justify-center gap-2 md:flex-row'>
-							<Menu as='div' className='relative'>
-								<MenuButton
-									as={Button}
-									variant='outline'
-									className='bg-transparent border-white text-white hover:bg-white hover:text-gray-900 inline-flex items-center'
-								>
-									Shop products
-								</MenuButton>
-								<MenuItems
-									transition
-									className='absolute left-1/2 transform -translate-x-1/2 z-50 mt-2 w-48 origin-top rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
-								>
-									{categories.map(category => (
-										<MenuItem key={category}>
-											<Link
-												href={`/category/${category}`}
-												className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
-											>
-												{formatCategoryName(category)}
-											</Link>
-										</MenuItem>
-									))}
-								</MenuItems>
-							</Menu>
+							<HeroMenu categories={categories} />
 						</div>
 					</div>
 				</div>
