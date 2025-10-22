@@ -4,17 +4,9 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outli
 import { getCategories } from '@/lib/api'
 import CartButton from '@/components/Cart/CartButton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { formatCategoryName, classNames } from '@/lib/utils'
 
 const navigation = [{ name: 'Home', href: '/', current: false }]
-
-function formatCategoryName(category: string): string {
-	const decoded = decodeURIComponent(category)
-	return decoded.replace(/\b\w/g, l => l.toUpperCase()).replace(/'[A-Z]/g, match => match.toLowerCase())
-}
-
-function classNames(...classes: string[]) {
-	return classes.filter(Boolean).join(' ')
-}
 
 export default async function Header() {
 	const categories = await getCategories()

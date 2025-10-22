@@ -5,11 +5,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getCategories } from '@/lib/api'
-
-function formatCategoryName(category: string): string {
-	const decoded = decodeURIComponent(category)
-	return decoded.replace(/\b\w/g, l => l.toUpperCase()).replace(/'[A-Z]/g, match => match.toLowerCase())
-}
+import { formatCategoryName } from '@/lib/utils'
 
 export default function Hero() {
 	const [categories, setCategories] = useState<string[]>([])

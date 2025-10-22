@@ -2,12 +2,12 @@
 
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useCart } from '@/lib/cart-context'
+import { useCartStore } from '@/lib/cart-store'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function CartDrawer() {
-	const { state, removeItem, updateQuantity, closeCart, getTotalPrice } = useCart()
+	const { items, isOpen, removeItem, updateQuantity, closeCart, getTotalPrice } = useCartStore()
 
 	const handleQuantityChange = (id: number, newQuantity: number) => {
 		if (newQuantity < 1) {
@@ -18,7 +18,7 @@ export default function CartDrawer() {
 	}
 
 	return (
-		<Dialog open={state.isOpen} onClose={closeCart} className='relative z-50'>
+		<Dialog open={isOpen} onClose={closeCart} className='relative z-50'>
 			<DialogBackdrop
 				transition
 				className='fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0'
@@ -49,7 +49,7 @@ export default function CartDrawer() {
 									</div>
 
 									<div className='mt-8'>
-										{state.items.length === 0 ? (
+										{items.length === 0 ? (
 											<div className='text-center py-12'>
 												<div className='mx-auto h-24 w-24 text-gray-400 mb-4'>
 													<svg fill='none' viewBox='0 0 24 24' stroke='currentColor' className='w-full h-full'>
@@ -73,7 +73,7 @@ export default function CartDrawer() {
 										) : (
 											<div className='flow-root'>
 												<ul role='list' className='-my-6 divide-y divide-gray-200'>
-													{state.items.map(item => (
+													{items.map(item => (
 														<li key={item.id} className='flex py-6'>
 															<div className='size-24 shrink-0 overflow-hidden rounded-md border border-gray-200'>
 																{item.image && (
@@ -132,7 +132,7 @@ export default function CartDrawer() {
 									</div>
 								</div>
 
-								{state.items.length > 0 && (
+								{items.length > 0 && (
 									<div className='border-t border-gray-200 px-4 py-6 sm:px-6'>
 										<div className='flex justify-between text-base font-medium text-gray-900'>
 											<p>Subtotal</p>

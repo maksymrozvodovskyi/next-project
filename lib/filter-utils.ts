@@ -10,6 +10,10 @@ export interface URLFilterState {
 }
 
 export function filterProducts(products: Product[], filterState: URLFilterState): Product[] {
+	if (!products || !Array.isArray(products)) {
+		return []
+	}
+
 	let filteredProducts = products.filter(product => {
 		if (product.price < filterState.minPrice || product.price > filterState.maxPrice) {
 			return false

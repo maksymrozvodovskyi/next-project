@@ -15,28 +15,6 @@ export type CartItem = {
 	image: string
 }
 
-export type ProductListResponse = {
-	products: Product[]
-}
-
-export type FilterOption = {
-	value: string
-	label: string
-	isChecked: boolean
-}
-
-export type Filter = {
-	id: string
-	name: string
-	options: FilterOption[]
-}
-
-export type FilterState = {
-	priceRange: [number, number]
-	selectedFilters: Record<string, string[]>
-	searchQuery: string
-}
-
 export type ProfileData = {
 	fullName: string
 	email: string

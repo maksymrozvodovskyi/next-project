@@ -7,12 +7,12 @@ import { QUERY_KEYS } from '@/types/enums'
 import Image from 'next/image'
 import { ArrowLeftIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { AccordionDemo } from '@/components/ProductDetails/AccordionDemo'
-import { useCart } from '@/lib/cart-context'
+import { useCartStore } from '@/lib/cart-store'
 
 export default function ProductDetailsClient() {
 	const { id } = useParams<{ id: string }>()
 	const router = useRouter()
-	const { addItem, openCart } = useCart()
+	const { addItem, openCart } = useCartStore()
 
 	const {
 		data: product,

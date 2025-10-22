@@ -1,11 +1,17 @@
 'use client'
 
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { useCart } from '@/lib/cart-context'
+import { useCartStore } from '@/lib/cart-store'
+import { useEffect, useState } from 'react'
 
 export default function CartButton() {
-	const { openCart, getTotalItems } = useCart()
+	const { openCart, getTotalItems } = useCartStore()
+	const [isHydrated, setIsHydrated] = useState(false)
 	const itemCount = getTotalItems()
+
+	useEffect(() => {
+		setIsHydrated(true)
+	}, [])
 
 	return (
 		<button
@@ -16,7 +22,7 @@ export default function CartButton() {
 			<span className='absolute -inset-1.5' />
 			<span className='sr-only'>View shopping cart</span>
 			<ShoppingCartIcon aria-hidden='true' className='size-6' />
-			{itemCount > 0 && (
+			{isHydrated && itemCount > 0 && (
 				<span className='absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full min-w-[1.25rem] h-5'>
 					{itemCount > 99 ? '99+' : itemCount}
 				</span>

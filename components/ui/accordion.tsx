@@ -2,10 +2,7 @@
 
 import * as React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-
-function cn(...classes: (string | undefined | null | false)[]) {
-	return classes.filter(Boolean).join(' ')
-}
+import { cn } from '@/lib/utils'
 
 interface AccordionContextType {
 	value: string | string[]
