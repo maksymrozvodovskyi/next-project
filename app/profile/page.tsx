@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from 'react'
 import { PencilIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
-import { ProfileData } from '@/types/productTypes'
+import { ProfileData } from '@/types/profileTypes'
+import { EditableField } from '@/components/EditableField'
 
 export default function ProfilePage() {
 	const [isEditing, setIsEditing] = useState(false)
@@ -77,100 +78,50 @@ export default function ProfilePage() {
 				</div>
 				<div className='mt-6 border-t border-white/10'>
 					<dl className='divide-y divide-white/10'>
-						<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-							<dt className='text-sm/6 font-medium text-gray-100'>Full name</dt>
-							<dd className='mt-1 text-sm/6 text-gray-400 sm:col-span-2 sm:mt-0'>
-								{isEditing ? (
-									<input
-										type='text'
-										value={editableData.fullName}
-										onChange={e => handleInputChange('fullName', e.target.value)}
-										className='w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
-										placeholder='Enter full name'
-									/>
-								) : profileData.fullName ? (
-									<span>{profileData.fullName}</span>
-								) : (
-									<span className='text-gray-500 italic'>Not provided</span>
-								)}
-							</dd>
-						</div>
+						<EditableField
+							label='Full name'
+							value={isEditing ? editableData.fullName : profileData.fullName}
+							isEditing={isEditing}
+							onChange={value => handleInputChange('fullName', value)}
+							type='text'
+							placeholder='Enter full name'
+						/>
 
-						<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-							<dt className='text-sm/6 font-medium text-gray-100'>Email address</dt>
-							<dd className='mt-1 text-sm/6 text-gray-400 sm:col-span-2 sm:mt-0'>
-								{isEditing ? (
-									<input
-										type='email'
-										value={editableData.email}
-										onChange={e => handleInputChange('email', e.target.value)}
-										className='w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
-										placeholder='Enter email address'
-									/>
-								) : profileData.email ? (
-									<span>{profileData.email}</span>
-								) : (
-									<span className='text-gray-500 italic'>Not provided</span>
-								)}
-							</dd>
-						</div>
+						<EditableField
+							label='Email address'
+							value={isEditing ? editableData.email : profileData.email}
+							isEditing={isEditing}
+							onChange={value => handleInputChange('email', value)}
+							type='email'
+							placeholder='Enter email address'
+						/>
 
-						<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-							<dt className='text-sm/6 font-medium text-gray-100'>Address</dt>
-							<dd className='mt-1 text-sm/6 text-gray-400 sm:col-span-2 sm:mt-0'>
-								{isEditing ? (
-									<input
-										type='text'
-										value={editableData.address}
-										onChange={e => handleInputChange('address', e.target.value)}
-										className='w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
-										placeholder='Enter address'
-									/>
-								) : profileData.address ? (
-									<span>{profileData.address}</span>
-								) : (
-									<span className='text-gray-500 italic'>Not provided</span>
-								)}
-							</dd>
-						</div>
+						<EditableField
+							label='Address'
+							value={isEditing ? editableData.address : profileData.address}
+							isEditing={isEditing}
+							onChange={value => handleInputChange('address', value)}
+							type='text'
+							placeholder='Enter address'
+						/>
 
-						<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-							<dt className='text-sm/6 font-medium text-gray-100'>Phone number</dt>
-							<dd className='mt-1 text-sm/6 text-gray-400 sm:col-span-2 sm:mt-0'>
-								{isEditing ? (
-									<input
-										type='tel'
-										value={editableData.phoneNumber}
-										onChange={e => handleInputChange('phoneNumber', e.target.value)}
-										className='w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
-										placeholder='Enter phone number'
-									/>
-								) : profileData.phoneNumber ? (
-									<span>{profileData.phoneNumber}</span>
-								) : (
-									<span className='text-gray-500 italic'>Not provided</span>
-								)}
-							</dd>
-						</div>
+						<EditableField
+							label='Phone number'
+							value={isEditing ? editableData.phoneNumber : profileData.phoneNumber}
+							isEditing={isEditing}
+							onChange={value => handleInputChange('phoneNumber', value)}
+							type='tel'
+							placeholder='Enter phone number'
+						/>
 
-						<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-							<dt className='text-sm/6 font-medium text-gray-100'>Postal code</dt>
-							<dd className='mt-1 text-sm/6 text-gray-400 sm:col-span-2 sm:mt-0'>
-								{isEditing ? (
-									<input
-										type='text'
-										value={editableData.postalCode}
-										onChange={e => handleInputChange('postalCode', e.target.value)}
-										className='w-full bg-gray-800 border border-gray-600 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
-										placeholder='Enter postal code'
-									/>
-								) : profileData.postalCode ? (
-									<span>{profileData.postalCode}</span>
-								) : (
-									<span className='text-gray-500 italic'>Not provided</span>
-								)}
-							</dd>
-						</div>
+						<EditableField
+							label='Postal code'
+							value={isEditing ? editableData.postalCode : profileData.postalCode}
+							isEditing={isEditing}
+							onChange={value => handleInputChange('postalCode', value)}
+							type='text'
+							placeholder='Enter postal code'
+						/>
 					</dl>
 				</div>
 			</div>

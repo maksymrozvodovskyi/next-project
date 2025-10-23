@@ -2,7 +2,7 @@
 
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useCartStore } from '@/lib/cart-store'
+import { useCartStore } from '@/store/cart-store'
 import Image from 'next/image'
 import Link from 'next/link'
 

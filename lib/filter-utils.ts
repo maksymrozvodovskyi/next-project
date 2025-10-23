@@ -9,7 +9,7 @@ export interface URLFilterState {
 	page: number
 }
 
-export function filterProducts(products: Product[], filterState: URLFilterState): Product[] {
+export function getFilteredProducts(products: Product[], filterState: URLFilterState): Product[] {
 	if (!products || !Array.isArray(products)) {
 		return []
 	}
@@ -39,13 +39,13 @@ export function filterProducts(products: Product[], filterState: URLFilterState)
 	})
 
 	if (filterState.sortBy) {
-		filteredProducts = sortProducts(filteredProducts, filterState.sortBy)
+		filteredProducts = getSortedProducts(filteredProducts, filterState.sortBy)
 	}
 
 	return filteredProducts
 }
 
-export function sortProducts(products: Product[], sortBy: string): Product[] {
+export function getSortedProducts(products: Product[], sortBy: string): Product[] {
 	const sortedProducts = [...products]
 
 	switch (sortBy) {
@@ -62,7 +62,7 @@ export function sortProducts(products: Product[], sortBy: string): Product[] {
 	}
 }
 
-export function getFilterOptionsFromProducts(products: Product[]): {
+export function getPriceRangeFromProducts(products: Product[]): {
 	priceRange: [number, number]
 } {
 	const prices = products.map(p => p.price)

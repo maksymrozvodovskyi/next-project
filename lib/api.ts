@@ -3,7 +3,6 @@ import { Product } from '@/types/productTypes'
 
 axios.defaults.baseURL = 'http://localhost:3000/api'
 
-// зробив
 export const getCategories = async () => {
 	const res = await axios.get<string[]>('/categories')
 	return res.data
@@ -14,7 +13,6 @@ export const getProductsByCategory = async (category: string) => {
 	return res.data
 }
 
-// зробив
 export const getProductById = async (id: string) => {
 	const res = await axios.get<Product>(`/products/${id}`)
 	return res.data

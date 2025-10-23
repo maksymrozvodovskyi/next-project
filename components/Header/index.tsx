@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
-import { getCategories } from '@/lib/api'
 import CartButton from '@/components/Cart/CartButton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { formatCategoryName, classNames } from '@/lib/utils'
 
 const navigation = [{ name: 'Home', href: '/', current: false }]
 
-export default async function Header() {
-	const categories = await getCategories()
+type Props = {
+	categories: string[]
+}
 
+export default function Header({ categories }: Props) {
 	return (
 		<Disclosure as='nav' className='sticky top-0 bg-gray-800 z-50'>
 			<div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>

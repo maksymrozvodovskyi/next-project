@@ -1,6 +1,6 @@
 'use client'
 
-import { useFilters } from '@/lib/use-filters'
+import { useFilters } from '@/hooks/use-filters'
 import { useState, useEffect } from 'react'
 
 export default function PriceFilter() {

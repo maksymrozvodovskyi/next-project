@@ -1,6 +1,6 @@
 'use client'
 
-import { useFilters } from '@/lib/use-filters'
+import { useFilters } from '@/hooks/use-filters'
 
 const sortOptions = [
 	{ value: '', label: 'Default' },

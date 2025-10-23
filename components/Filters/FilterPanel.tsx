@@ -3,7 +3,7 @@
 import PriceFilter from './PriceFilter'
 import SortByOrderFilter from './SortByOrderFilter'
 import TextFilter from './TextFilter'
-import { useFilters } from '@/lib/use-filters'
+import { useFilters } from '@/hooks/use-filters'
 import { Button } from '@/components/ui/button'
 
 export default function FilterPanel() {

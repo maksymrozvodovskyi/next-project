@@ -1,6 +1,6 @@
 'use client'
 
-import { useFilters } from '@/lib/use-filters'
+import { useFilters } from '@/hooks/use-filters'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function TextFilter() {

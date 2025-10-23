@@ -75,6 +75,14 @@ const Accordion = React.forwardRef<
 })
 Accordion.displayName = 'Accordion'
 
+const AccordionItemContext = React.createContext<
+	| {
+			isOpen: boolean
+			onToggle: () => void
+	  }
+	| undefined
+>(undefined)
+
 const AccordionItem = React.forwardRef<
 	HTMLDivElement,
 	React.HTMLAttributes<HTMLDivElement> & {
@@ -87,66 +95,63 @@ const AccordionItem = React.forwardRef<
 	}
 
 	const isOpen = context.isItemOpen(value)
+	const onToggle = () => context.onValueChange(value)
 
 	return (
-		<div ref={ref} className={cn('border border-gray-200 rounded-lg', className)} {...props}>
-			{React.Children.map(children, child => {
-				if (React.isValidElement(child) && child.type === AccordionTrigger) {
-					return React.cloneElement(child, {
-						isOpen,
-						onToggle: () => context.onValueChange(value),
-					} as React.ComponentProps<typeof AccordionTrigger>)
-				}
-				if (React.isValidElement(child) && child.type === AccordionContent) {
-					return React.cloneElement(child, {
-						isOpen,
-					} as React.ComponentProps<typeof AccordionContent>)
-				}
-				return child
-			})}
-		</div>
+		<AccordionItemContext.Provider value={{ isOpen, onToggle }}>
+			<div ref={ref} className={cn('border border-gray-200 rounded-lg', className)} {...props}>
+				{children}
+			</div>
+		</AccordionItemContext.Provider>
 	)
 })
 AccordionItem.displayName = 'AccordionItem'
 
-const AccordionTrigger = React.forwardRef<
-	HTMLButtonElement,
-	React.ButtonHTMLAttributes<HTMLButtonElement> & {
-		isOpen?: boolean
-		onToggle?: () => void
+const AccordionTrigger = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
+	({ className, children, ...props }, ref) => {
+		const itemContext = React.useContext(AccordionItemContext)
+		if (!itemContext) {
+			throw new Error('AccordionTrigger must be used within an AccordionItem')
+		}
+
+		const { isOpen, onToggle } = itemContext
+
+		return (
+			<button
+				ref={ref}
+				type='button'
+				className={cn(
+					'flex flex-1 w-full items-center justify-between py-4 px-6 text-left font-medium transition-all hover:bg-gray-50',
+					isOpen && 'bg-gray-50',
+					className
+				)}
+				onClick={onToggle}
+				{...props}
+			>
+				{children}
+				<ChevronDownIcon className={cn('h-4 w-4 shrink-0 transition-transform duration-200', isOpen && 'rotate-180')} />
+			</button>
+		)
 	}
->(({ className, children, isOpen = false, onToggle, ...props }, ref) => {
-	return (
-		<button
-			ref={ref}
-			type='button'
-			className={cn(
-				'flex flex-1 w-full items-center justify-between py-4 px-6 text-left font-medium transition-all hover:bg-gray-50',
-				isOpen && 'bg-gray-50',
-				className
-			)}
-			onClick={onToggle}
-			{...props}
-		>
-			{children}
-			<ChevronDownIcon className={cn('h-4 w-4 shrink-0 transition-transform duration-200', isOpen && 'rotate-180')} />
-		</button>
-	)
-})
+)
 AccordionTrigger.displayName = 'AccordionTrigger'
 
-const AccordionContent = React.forwardRef<
-	HTMLDivElement,
-	React.HTMLAttributes<HTMLDivElement> & {
-		isOpen?: boolean
+const AccordionContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+	({ className, children }, ref) => {
+		const itemContext = React.useContext(AccordionItemContext)
+		if (!itemContext) {
+			throw new Error('AccordionContent must be used within an AccordionItem')
+		}
+
+		const { isOpen } = itemContext
+
+		return (
+			<div ref={ref} className={cn('overflow-hidden', className)}>
+				{isOpen && <div className='pb-4 pt-0 px-6'>{children}</div>}
+			</div>
+		)
 	}
->(({ className, children, isOpen = false }, ref) => {
-	return (
-		<div ref={ref} className={cn('overflow-hidden', className)}>
-			{isOpen && <div className='pb-4 pt-0 px-6'>{children}</div>}
-		</div>
-	)
-})
+)
 AccordionContent.displayName = 'AccordionContent'
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

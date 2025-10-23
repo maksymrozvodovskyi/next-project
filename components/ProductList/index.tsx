@@ -1,11 +1,10 @@
 'use client'
 
-import { useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Product } from '@/types/productTypes'
-import { useFilters } from '@/lib/use-filters'
-import { filterProducts } from '@/lib/filter-utils'
+import { useFilters } from '@/hooks/use-filters'
+import { getFilteredProducts } from '@/lib/filter-utils'
 
 export type Props = {
 	products?: Product[]
@@ -14,20 +13,16 @@ export type Props = {
 export default function ProductList({ products }: Props) {
 	const { searchQuery, minPrice, maxPrice, categories, sortBy, page } = useFilters()
 
-	const filteredProducts = useMemo(() => {
-		if (!products) return []
+	const filterState = {
+		searchQuery,
+		minPrice,
+		maxPrice,
+		categories,
+		sortBy,
+		page,
+	}
 
-		const filterState = {
-			searchQuery,
-			minPrice,
-			maxPrice,
-			categories,
-			sortBy,
-			page,
-		}
-
-		return filterProducts(products, filterState)
-	}, [products, searchQuery, minPrice, maxPrice, categories, sortBy, page])
+	const filteredProducts = products ? getFilteredProducts(products, filterState) : []
 
 	const isLoading = false
 	const error = null
