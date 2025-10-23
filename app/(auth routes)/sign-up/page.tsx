@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { register, RegisterRequest } from '@/lib/api'
+import { register } from '@/lib/api'
 import { ApiError } from '@/app/api/api'
+import { RegisterRequest } from '../../../types/userTypes'
 
 export default function SignUp() {
 	const router = useRouter()
