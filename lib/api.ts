@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { Product } from '@/types/productTypes'
-import { User, RegisterRequest } from '../types/userTypes'
+import { User } from '../types/userTypes'
+import { RegisterRequest } from '@/types/registerTypes'
+import { LoginRequest } from '@/types/loginTypes'
 
 const nextServer = axios.create({
 	baseURL: 'http://localhost:3000/api',
@@ -10,6 +12,11 @@ const nextServer = axios.create({
 export const register = async (data: RegisterRequest) => {
 	const res = await nextServer.post<User>('/auth/register', data)
 	return res.data
+}
+
+export const login = async (data: LoginRequest) => {
+	const res = await nextServer.post<{ success: boolean; user: User }>('/auth/login', data)
+	return res.data.user
 }
 
 export const getCategories = async () => {
