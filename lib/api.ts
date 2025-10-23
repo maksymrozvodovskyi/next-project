@@ -1,23 +1,11 @@
 import axios from 'axios'
 import { Product } from '@/types/productTypes'
+import { User, RegisterRequest } from '../types/userTypes'
 
 const nextServer = axios.create({
 	baseURL: 'http://localhost:3000/api',
 	withCredentials: true,
 })
-
-export type RegisterRequest = {
-	email: string
-	password: string
-	userName: string
-}
-
-export type User = {
-	id: string
-	userName?: string
-	email: string
-	password?: string
-}
 
 export const register = async (data: RegisterRequest) => {
 	const res = await nextServer.post<User>('/auth/register', data)
