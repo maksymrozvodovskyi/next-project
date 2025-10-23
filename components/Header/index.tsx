@@ -5,7 +5,11 @@ import CartButton from '@/components/Cart/CartButton'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { formatCategoryName, classNames } from '@/lib/utils'
 
-const navigation = [{ name: 'Home', href: '/', current: false }]
+const navigation = [
+	{ name: 'Home', href: '/', current: false },
+	{ name: 'Login', href: '/sign-in', current: false },
+	{ name: 'Register', href: '/sign-up', current: false },
+]
 
 type Props = {
 	categories: string[]
