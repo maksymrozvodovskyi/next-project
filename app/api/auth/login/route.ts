@@ -13,26 +13,26 @@ export async function POST(req: NextRequest) {
 
 		const apiRes = await api.post('/auth/login', credentials)
 
-		const cookieStore = await cookies()
-
-		if (apiRes.data && apiRes.data.token) {
-			cookieStore.set('accessToken', apiRes.data.token, {
-				httpOnly: true,
-				secure: process.env.NODE_ENV === 'production',
-				sameSite: 'lax',
-				maxAge: 60 * 60 * 24 * 7,
-			})
-
-			return NextResponse.json(apiRes.data)
+		if (!apiRes.data || !apiRes.data.token) {
+			return NextResponse.json({ error: 'Login failed' }, { status: 401 })
 		}
 
-		return NextResponse.json({ error: 'Login failed' }, { status: 401 })
+		const cookieStore = await cookies()
+		cookieStore.set('accessToken', apiRes.data.token, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'lax',
+			maxAge: 60 * 60 * 24 * 7,
+		})
+
+		return NextResponse.json(apiRes.data)
 	} catch (error) {
+		const err = error as ApiError
 		return NextResponse.json(
 			{
-				error: (error as ApiError).response?.data?.error ?? (error as ApiError).message ?? 'Login failed',
+				error: err.response?.data?.error ?? err.message ?? 'Login failed',
 			},
-			{ status: (error as ApiError).response?.status ?? 401 }
+			{ status: err.response?.status ?? 401 }
 		)
 	}
 }
