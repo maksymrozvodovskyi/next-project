@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { login } from '@/lib/api'
+import { login } from '@/lib/api/clientApi'
 import { LoginRequest } from '@/types/loginTypes'
 import { ApiError } from '@/app/api/api'
 
@@ -16,7 +16,7 @@ export default function SignIn() {
 
 			const res = await login(formValues)
 
-			if (res) {
+			if (res.status === 200) {
 				router.push('/profile')
 			} else {
 				setError('Invalid username or password')

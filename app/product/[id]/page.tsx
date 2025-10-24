@@ -1,4 +1,4 @@
-import { getProductById } from '@/lib/api'
+import { getProductById } from '@/lib/api/clientApi'
 import { ProductDetails } from '@/components/ProductDetails'
 import { notFound } from 'next/navigation'
 

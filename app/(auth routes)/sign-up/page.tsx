@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { register } from '@/lib/api'
+import { register } from '@/lib/api/clientApi'
 import { ApiError } from '@/app/api/api'
 import { RegisterRequest } from '../../../types/registerTypes'
 

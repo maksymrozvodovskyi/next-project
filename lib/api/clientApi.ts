@@ -1,13 +1,8 @@
-import axios from 'axios'
 import { Product } from '@/types/productTypes'
-import { User } from '../types/userTypes'
+import { User } from '../../types/userTypes'
 import { RegisterRequest } from '@/types/registerTypes'
 import { LoginRequest } from '@/types/loginTypes'
-
-const nextServer = axios.create({
-	baseURL: 'http://localhost:3000/api',
-	withCredentials: true,
-})
+import { nextServer } from './api'
 
 export const register = async (data: RegisterRequest) => {
 	const res = await nextServer.post<User>('/auth/register', data)
@@ -15,8 +10,8 @@ export const register = async (data: RegisterRequest) => {
 }
 
 export const login = async (data: LoginRequest) => {
-	const res = await nextServer.post<{ success: boolean; user: User }>('/auth/login', data)
-	return res.data.user
+	const res = await nextServer.post<{ success: boolean; user?: User; token?: string }>('/auth/login', data)
+	return res
 }
 
 export const getCategories = async () => {

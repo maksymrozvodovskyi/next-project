@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
 		const apiRes = await api.post('/auth/login', credentials)
 
-		const cookieStore = cookies()
+		const cookieStore = await cookies()
 
 		if (apiRes.data && apiRes.data.token) {
 			cookieStore.set('accessToken', apiRes.data.token, {

@@ -6,7 +6,7 @@ import './globals.css'
 import TenStackProvider from '@/components/TenStackProvider'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import CartDrawer from '@/components/Cart/CartDrawer'
-import { getCategories } from '@/lib/api'
+import { getCategories } from '@/lib/api/clientApi'
 
 const roboto = Roboto({
 	subsets: ['latin'],

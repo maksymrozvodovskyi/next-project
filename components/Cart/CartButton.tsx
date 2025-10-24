@@ -1,7 +1,7 @@
 'use client'
 
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { useCartStore } from '@/store/cart-store'
+import { useCartStore } from '../../lib/store/cartStore'
 
 export default function CartButton() {
 	const { openCart, getTotalItems } = useCartStore()
