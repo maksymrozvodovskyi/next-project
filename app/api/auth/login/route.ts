@@ -1,38 +1,32 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { api, ApiError } from '../../api'
-import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
+import { readDB } from '@/lib/db'
 
-export async function POST(req: NextRequest) {
-	const body = await req.json()
+const STATIC_TOKEN = 'hardcoded-local-token-12345'
 
-	try {
-		const credentials = {
-			username: body.username,
-			password: body.password,
-		}
+export async function POST(req: Request) {
+	const { username, password } = await req.json()
 
-		const apiRes = await api.post('/auth/login', credentials)
-
-		if (!apiRes.data || !apiRes.data.token) {
-			return NextResponse.json({ error: 'Login failed' }, { status: 401 })
-		}
-
-		const cookieStore = await cookies()
-		cookieStore.set('accessToken', apiRes.data.token, {
-			httpOnly: true,
-			secure: process.env.NODE_ENV === 'production',
-			sameSite: 'lax',
-			maxAge: 60 * 60 * 24 * 7,
-		})
-
-		return NextResponse.json(apiRes.data)
-	} catch (error) {
-		const err = error as ApiError
-		return NextResponse.json(
-			{
-				error: err.response?.data?.error ?? err.message ?? 'Login failed',
-			},
-			{ status: err.response?.status ?? 401 }
-		)
+	if (!username || !password) {
+		return NextResponse.json({ error: 'Username and password are required' }, { status: 400 })
 	}
+
+	const db = readDB()
+	const user = db.users.find((u: any) => u.username === username && u.password === password)
+
+	if (!user) {
+		return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 })
+	}
+
+	const res = NextResponse.json({
+		success: true,
+		user: { id: user.id, username: user.username, email: user.email },
+	})
+
+	res.cookies.set('accessToken', STATIC_TOKEN, {
+		httpOnly: true,
+		path: '/',
+		maxAge: 60 * 60 * 24,
+	})
+
+	return res
 }

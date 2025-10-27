@@ -1,31 +1,30 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { api, ApiError } from '../../api'
+import { NextResponse } from 'next/server'
+import { readDB, writeDB } from '@/lib/db'
 
-export async function POST(req: NextRequest) {
-	const body = await req.json()
-	try {
-		const userData = {
-			username: body.username,
-			email: body.email,
-			password: body.password,
-		}
+export async function POST(req: Request) {
+	const { username, email, password } = await req.json()
 
-		const apiRes = await api.post('/users', userData)
-
-		const createdUser = {
-			id: apiRes.data.id,
-			username: body.username,
-			email: body.email,
-			password: body.password,
-		}
-
-		return NextResponse.json(createdUser)
-	} catch (error) {
-		return NextResponse.json(
-			{
-				error: (error as ApiError).response?.data?.error ?? (error as ApiError).message ?? 'Registration failed',
-			},
-			{ status: (error as ApiError).response?.status ?? 400 }
-		)
+	if (!username || !email || !password) {
+		return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
 	}
+
+	const db = readDB()
+
+	const existing = db.users.find((u: any) => u.username === username || u.email === email)
+	if (existing) {
+		return NextResponse.json({ error: 'User already exists' }, { status: 400 })
+	}
+
+	const newUser = {
+		id: Date.now(),
+		username,
+		email,
+		password,
+		createdAt: new Date().toISOString(),
+	}
+
+	db.users.push(newUser)
+	writeDB(db)
+
+	return NextResponse.json({ success: true, user: { id: newUser.id, username, email } })
 }

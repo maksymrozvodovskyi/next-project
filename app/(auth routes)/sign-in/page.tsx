@@ -1,28 +1,30 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { login } from '@/lib/api/clientApi'
-import { LoginRequest } from '@/types/loginTypes'
-import { ApiError } from '@/app/api/api'
+import { useAuthStore } from '@/lib/store/authStore'
 
 export default function SignIn() {
 	const router = useRouter()
-	const [error, setError] = useState('')
+	const { setUser } = useAuthStore()
 
-	const handleSubmit = async (formData: FormData) => {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+		const formData = new FormData(e.currentTarget)
+		const username = formData.get('username')
+		const password = formData.get('password')
+
 		try {
-			const formValues = Object.fromEntries(formData) as LoginRequest
+			const res = await fetch('/api/auth/login', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ username, password }),
+			})
 
-			const res = await login(formValues)
+			const data = await res.json()
 
-			if (res.status === 200) {
-				router.push('/profile')
-			} else {
-				setError('Invalid username or password')
-			}
-		} catch (error) {
-			setError((error as ApiError).response?.data?.error ?? (error as ApiError).message ?? 'Oops... some error')
+			setUser(data.user)
+			router.push('/profile')
+		} catch (err) {
+			console.error('Login error:', err)
 		}
 	}
 
@@ -38,7 +40,7 @@ export default function SignIn() {
 						</a>
 					</p>
 				</div>
-				<form className='mt-8 space-y-6' action={handleSubmit}>
+				<form className='mt-8 space-y-6' onSubmit={handleSubmit}>
 					<div className='rounded-md shadow-sm -space-y-px'>
 						<div>
 							<label htmlFor='username' className='sr-only'>
@@ -67,12 +69,6 @@ export default function SignIn() {
 							/>
 						</div>
 					</div>
-
-					{error && (
-						<div className='rounded-md bg-red-50 p-4'>
-							<div className='text-sm text-red-700'>{error}</div>
-						</div>
-					)}
 
 					<div>
 						<button

@@ -1,28 +1,28 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { register } from '@/lib/api/clientApi'
-import { ApiError } from '@/app/api/api'
-import { RegisterRequest } from '../../../types/registerTypes'
+import { useAuthStore } from '@/lib/store/authStore'
 
 export default function SignUp() {
 	const router = useRouter()
-	const [error, setError] = useState('')
+	const { setUser } = useAuthStore()
 
-	const handleSubmit = async (formData: FormData) => {
+	async function handleSubmit(formData: FormData) {
+		const username = formData.get('username')
+		const email = formData.get('email')
+		const password = formData.get('password')
+
 		try {
-			const formValues = Object.fromEntries(formData) as RegisterRequest
+			const res = await fetch('/api/auth/register', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ username, email, password }),
+			})
 
-			const res = await register(formValues)
-
-			if (res && (res.id || res.email)) {
-				router.push('/profile')
-			} else {
-				setError('Invalid email or password')
-			}
-		} catch (error) {
-			setError((error as ApiError).response?.data?.error ?? (error as ApiError).message ?? 'Oops... some error')
+			setUser({ username, email } as any)
+			router.push('/sign-in')
+		} catch (err) {
+			console.error('Error:', err)
 		}
 	}
 
@@ -38,63 +38,33 @@ export default function SignUp() {
 						</a>
 					</p>
 				</div>
-				<form className='mt-8 space-y-6' action={handleSubmit}>
+
+				<form
+					className='mt-8 space-y-6'
+					onSubmit={e => {
+						e.preventDefault()
+						const formData = new FormData(e.currentTarget)
+						handleSubmit(formData)
+					}}
+				>
 					<div className='rounded-md shadow-sm -space-y-px'>
 						<div>
-							<label htmlFor='username' className='sr-only'>
-								Username
-							</label>
-							<input
-								id='username'
-								name='username'
-								type='text'
-								required
-								className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
-								placeholder='Username'
-							/>
+							<input id='username' name='username' type='text' required placeholder='Username' />
 						</div>
 						<div>
-							<label htmlFor='email' className='sr-only'>
-								Email
-							</label>
-							<input
-								id='email'
-								name='email'
-								type='email'
-								required
-								className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
-								placeholder='Email'
-							/>
+							<input id='email' name='email' type='email' required placeholder='Email' />
 						</div>
 						<div>
-							<label htmlFor='password' className='sr-only'>
-								Password
-							</label>
-							<input
-								id='password'
-								name='password'
-								type='password'
-								required
-								className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
-								placeholder='Password'
-							/>
+							<input id='password' name='password' type='password' required placeholder='Password' />
 						</div>
 					</div>
 
-					{error && (
-						<div className='rounded-md bg-red-50 p-4'>
-							<div className='text-sm text-red-700'>{error}</div>
-						</div>
-					)}
-
-					<div>
-						<button
-							type='submit'
-							className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-						>
-							Register
-						</button>
-					</div>
+					<button
+						type='submit'
+						className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+					>
+						Register
+					</button>
 				</form>
 			</div>
 		</div>

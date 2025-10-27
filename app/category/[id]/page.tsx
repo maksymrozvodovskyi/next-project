@@ -1,4 +1,4 @@
-import { getProductsByCategory } from '@/lib/api/api'
+import { getProductsByCategory } from '@/lib/api/clientApi'
 import ProductList from '@/components/ProductList'
 
 export type Props = {
