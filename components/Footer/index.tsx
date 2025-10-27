@@ -1,6 +1,9 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
 
 export default function Footer() {
+	const t = useTranslations('footer')
+
 	return (
 		<footer className='bg-gray-800 text-white'>
 			<div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
@@ -9,9 +12,7 @@ export default function Footer() {
 						<Link href='/' className='text-2xl font-bold text-white mb-4 block'>
 							FakeStore
 						</Link>
-						<p className='text-gray-300 mb-6'>
-							Making the world a better place through constructing elegant hierarchies for your shopping needs.
-						</p>
+						<p className='text-gray-300 mb-6'>{t('desc')}</p>
 						<div className='flex justify-center space-x-4'>
 							<a
 								href='#'
@@ -50,11 +51,8 @@ export default function Footer() {
 				</div>
 
 				<div className='border-t border-gray-700 py-6'>
-					<div className='flex flex-col md:flex-row justify-between items-center'>
-						<p className='text-gray-300 text-sm'>&copy; 2024 FakeStore, Inc. All rights reserved.</p>
-						<div className='mt-4 md:mt-0'>
-							<span className='text-gray-400 text-sm'>Built with Next.js and Tailwind CSS</span>
-						</div>
+					<div className='flex md:flex-row justify-center items-center'>
+						<p className='text-gray-300 text-sm'>2024 FakeStore, {t('rights')}</p>
 					</div>
 				</div>
 			</div>

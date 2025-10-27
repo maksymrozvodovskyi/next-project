@@ -1,0 +1,28 @@
+{
+  "categories": {
+    "electronics": "Electronics",
+    "jewelery": "Jewelry",
+    "men's clothing": "Men's clothing",
+    "women's clothing": "Women's clothing"
+  },
+  "footer": {
+    "desc": "Making the world a better place through constructing elegant hierarchies for your shopping needs",
+    "rights": "All rights reserved."
+  },
+  "greeting": {
+    "greeting": "Hello, {userName}"
+  },
+  "header": {
+    "categories": "Categories",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Your profile",
+    "register": "Register",
+    "settings": "Settings"
+  },
+  "hero": {
+    "button": "Shop",
+    "desc": "Discover a wide range of quality products across various categories. We offer the best products at affordable prices with fast and reliable delivery worldwide.",
+    "title": "Your ultimate online store"
+  }
+}

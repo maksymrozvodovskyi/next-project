@@ -1,10 +1,19 @@
 import HeroMenu from '@/components/Hero/HeroMenu'
+import { useTranslations } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
 
 export type Props = {
 	categories: string[]
+	params: { locale: string }
 }
 
-export default function Hero({ categories }: Props) {
+export default function Hero({ categories, params }: Props) {
+	const t = useTranslations('hero')
+
+	const locale = params.locale
+
+	setRequestLocale(locale)
+
 	return (
 		<div className='bg-gray-900'>
 			<div className='relative isolate px-6 pt-14 lg:px-8'>
@@ -22,13 +31,8 @@ export default function Hero({ categories }: Props) {
 				</div>
 				<div className='mx-auto max-w-2xl py-32 sm:py-48 lg:py-56'>
 					<div className='text-center'>
-						<h1 className='text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl'>
-							Your ultimate online store
-						</h1>
-						<p className='mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8'>
-							Discover a wide range of quality products across various categories. We offer the best products at
-							affordable prices with fast and reliable delivery worldwide.
-						</p>
+						<h1 className='text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl'>{t('title')}</h1>
+						<p className='mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8'>{t('desc')}</p>
 						<div className='mt-10 flex flex-wrap items-center justify-center gap-2 md:flex-row'>
 							<HeroMenu categories={categories} />
 						</div>

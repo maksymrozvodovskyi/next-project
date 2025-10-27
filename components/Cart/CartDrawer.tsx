@@ -4,7 +4,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useCartStore } from '@/lib/store/cartStore'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 
 export default function CartDrawer() {
 	const { items, isOpen, removeItem, updateQuantity, closeCart, getTotalPrice } = useCartStore()

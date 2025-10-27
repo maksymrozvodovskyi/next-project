@@ -1,26 +1,25 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import CartButton from '@/components/Cart/CartButton'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { formatCategoryName, classNames } from '@/lib/utils'
-import LogoutButton from '../LogoutButton/LogoutButton'
+import LogoutButton from '../LogoutButton'
 import { useAuthStore } from '@/lib/store/authStore'
-
-const navigation = [
-	{ name: 'Home', href: '/', current: false },
-	{ name: 'Login', href: '/sign-in', current: false },
-	{ name: 'Register', href: '/sign-up', current: false },
-]
+import LocaleSwitcher from '../LocaleSwitcher/index'
+import { useTranslations } from 'next-intl'
 
 type Props = {
 	categories: string[]
 }
 
 export default function Header({ categories }: Props) {
-	const { isAuthenticated } = useAuthStore()
+	const { isAuthenticated, user } = useAuthStore()
+	const t = useTranslations('header')
+	const c = useTranslations('categories')
+	const g = useTranslations('greeting')
 
 	return (
 		<Disclosure as='nav' className='sticky top-0 bg-gray-800 z-50'>
@@ -48,13 +47,13 @@ export default function Header({ categories }: Props) {
 											href='/sign-in'
 											className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
 										>
-											Login
+											{t('login')}
 										</Link>
 										<Link
 											href='/sign-up'
 											className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
 										>
-											Register
+											{t('register')}
 										</Link>
 									</>
 								)}
@@ -65,7 +64,7 @@ export default function Header({ categories }: Props) {
 											'rounded-md px-3 py-2 text-sm font-medium inline-flex items-center relative z-10 pointer-events-auto cursor-pointer'
 										)}
 									>
-										Categories
+										{t('categories')}
 										<ChevronDownIcon className='ml-1 h-4 w-4' aria-hidden='true' />
 									</MenuButton>
 									<MenuItems
@@ -78,7 +77,7 @@ export default function Header({ categories }: Props) {
 													href={`/category/${category}`}
 													className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
 												>
-													{formatCategoryName(category)}
+													{c(category)}
 												</Link>
 											</MenuItem>
 										))}
@@ -87,8 +86,16 @@ export default function Header({ categories }: Props) {
 							</div>
 						</div>
 					</div>
+					{isAuthenticated && user && (
+						<div className='hidden sm:flex flex-1 justify-center'>
+							<p className='text-gray-200 text-sm font-medium'>{g('greeting', { userName: user?.username })}</p>
+						</div>
+					)}
 					<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 						<CartButton />
+						<div className='ml-4'>
+							<LocaleSwitcher />
+						</div>
 						{isAuthenticated && (
 							<Menu as='div' className='relative ml-3'>
 								<MenuButton className='relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'>
@@ -99,7 +106,6 @@ export default function Header({ categories }: Props) {
 											src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?...'
 											alt='User avatar'
 										/>
-										<AvatarFallback className='bg-gray-600 text-white text-sm font-medium'>U</AvatarFallback>
 									</Avatar>
 								</MenuButton>
 
@@ -109,12 +115,12 @@ export default function Header({ categories }: Props) {
 								>
 									<MenuItem>
 										<Link href='/profile' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
-											Your profile
+											{t('profile')}
 										</Link>
 									</MenuItem>
 									<MenuItem>
 										<a href='#' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
-											Settings
+											{t('settings')}
 										</a>
 									</MenuItem>
 									<MenuItem>

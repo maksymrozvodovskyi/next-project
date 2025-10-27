@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { AccordionDemo } from '@/components/ProductDetails/AccordionDemo'
 import { AddToCartButton } from '@/components/ProductDetails/AddToCartButton'

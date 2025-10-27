@@ -2,14 +2,19 @@
 
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { formatCategoryName } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 export type Props = {
 	categories: string[]
 }
 
 export default function HeroMenu({ categories }: Props) {
+	const t = useTranslations('hero')
+
+	const c = useTranslations('categories')
+
 	return (
 		<Menu as='div' className='relative'>
 			<MenuButton
@@ -17,7 +22,7 @@ export default function HeroMenu({ categories }: Props) {
 				variant='outline'
 				className='bg-transparent border-white text-white hover:bg-white hover:text-gray-900 inline-flex items-center'
 			>
-				Shop products
+				{t('button')}
 			</MenuButton>
 			<MenuItems
 				transition
@@ -29,7 +34,7 @@ export default function HeroMenu({ categories }: Props) {
 							href={`/category/${category}`}
 							className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
 						>
-							{formatCategoryName(category)}
+							{c(category)}
 						</Link>
 					</MenuItem>
 				))}

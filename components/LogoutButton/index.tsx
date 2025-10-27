@@ -2,9 +2,11 @@
 
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/lib/store/authStore'
+import { useTranslations } from 'next-intl'
 
 export default function LogoutButton() {
 	const router = useRouter()
+	const t = useTranslations('header')
 
 	const handleLogout = async () => {
 		try {
@@ -21,7 +23,7 @@ export default function LogoutButton() {
 			onClick={handleLogout}
 			className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 data-focus:bg-gray-100 disabled:opacity-50'
 		>
-			Sign out
+			{t('logout')}
 		</button>
 	)
 }

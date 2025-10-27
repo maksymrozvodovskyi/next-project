@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
 import { Product } from '@/types/productTypes'
 import { useFilters } from '@/hooks/use-filters'
