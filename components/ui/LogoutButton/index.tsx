@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useAuthStore } from '@/lib/store/authStore'
+import { useAuthStore } from '@/stores/authStore'
 import { useTranslations } from 'next-intl'
 
 export default function LogoutButton() {
