@@ -3,7 +3,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
-import { formatCategoryName } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
 
 export type Props = {
