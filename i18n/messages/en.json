@@ -1,0 +1,28 @@
+{
+  "categories": {
+    "electronics": "Electronics",
+    "jewelery": "Jewelry",
+    "mensClothing": "Men's clothing",
+    "womensClothing": "Women's clothing"
+  },
+  "footer": {
+    "descriptionText": "Making the world a better place through constructing elegant hierarchies for your shopping needs",
+    "rightsText": "All rights reserved."
+  },
+  "greeting": {
+    "greetingMessage": "Hello, {userName}"
+  },
+  "header": {
+    "categoriesDropdownLabel": "Categories",
+    "loginLinkLabel": "Login",
+    "logoutButtonLabel": "Logout",
+    "profileLinkLabel": "Your profile",
+    "registerLinkLabel": "Register",
+    "settingsLinkLabel": "Settings"
+  },
+  "hero": {
+    "descriptionText": "Discover a wide range of quality products across various categories. We offer the best products at affordable prices with fast and reliable delivery worldwide.",
+    "shopButtonLabel": "Shop",
+    "titleText": "Your ultimate online store"
+  }
+}
