@@ -47,13 +47,13 @@ export default function Header({ categories }: Props) {
 											href='/sign-in'
 											className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
 										>
-											{t('header.login')}
+											{t('header.loginLinkLabel')}
 										</Link>
 										<Link
 											href='/sign-up'
 											className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
 										>
-											{t('header.register')}
+											{t('header.registerLinkLabel')}
 										</Link>
 									</>
 								)}
@@ -65,7 +65,7 @@ export default function Header({ categories }: Props) {
 											'rounded-md px-3 py-2 text-sm font-medium inline-flex items-center relative z-10 cursor-pointer'
 										)}
 									>
-										{t('header.categories')}
+										{t('header.categoriesDropdownLabel')}
 										<ChevronDownIcon className='ml-1 h-4 w-4' aria-hidden='true' />
 									</MenuButton>
 									<MenuItems
@@ -92,7 +92,9 @@ export default function Header({ categories }: Props) {
 
 					{isAuthenticated && user && (
 						<div className='hidden sm:flex flex-1 justify-center'>
-							<p className='text-gray-200 text-sm font-medium'>{t('greeting.greeting', { userName: user.username })}</p>
+							<p className='text-gray-200 text-sm font-medium'>
+								{t('greeting.greetingMessage', { userName: user.username })}
+							</p>
 						</div>
 					)}
 
@@ -121,12 +123,12 @@ export default function Header({ categories }: Props) {
 								>
 									<MenuItem>
 										<Link href='/profile' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
-											{t('header.profile')}
+											{t('header.profileLinkLabel')}
 										</Link>
 									</MenuItem>
 									<MenuItem>
 										<a href='#' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
-											{t('header.settings')}
+											{t('header.settingsLinkLabel')}
 										</a>
 									</MenuItem>
 									<MenuItem>
@@ -147,13 +149,13 @@ export default function Header({ categories }: Props) {
 								href='/sign-in'
 								className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
 							>
-								{t('header.login')}
+								{t('header.loginLinkLabel')}
 							</Link>
 							<Link
 								href='/sign-up'
 								className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
 							>
-								{t('header.register')}
+								{t('header.registerLinkLabel')}
 							</Link>
 						</>
 					)}

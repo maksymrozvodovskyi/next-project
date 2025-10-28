@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { User } from '../../types/userTypes'
+import { User } from '../lib/types/userTypes'
 
 type AuthStore = {
 	isAuthenticated: boolean

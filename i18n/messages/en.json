@@ -6,23 +6,23 @@
     "women's clothing": "Women's clothing"
   },
   "footer": {
-    "desc": "Making the world a better place through constructing elegant hierarchies for your shopping needs",
-    "rights": "All rights reserved."
+    "descriptionText": "Making the world a better place through constructing elegant hierarchies for your shopping needs",
+    "rightsText": "All rights reserved."
   },
   "greeting": {
-    "greeting": "Hello, {userName}"
+    "greetingMessage": "Hello, {userName}"
   },
   "header": {
-    "categories": "Categories",
-    "login": "Login",
-    "logout": "Logout",
-    "profile": "Your profile",
-    "register": "Register",
-    "settings": "Settings"
+    "categoriesDropdownLabel": "Categories",
+    "loginLinkLabel": "Login",
+    "logoutButtonLabel": "Logout",
+    "profileLinkLabel": "Your profile",
+    "registerLinkLabel": "Register",
+    "settingsLinkLabel": "Settings"
   },
   "hero": {
-    "button": "Shop",
-    "desc": "Discover a wide range of quality products across various categories. We offer the best products at affordable prices with fast and reliable delivery worldwide.",
-    "title": "Your ultimate online store"
+    "descriptionText": "Discover a wide range of quality products across various categories. We offer the best products at affordable prices with fast and reliable delivery worldwide.",
+    "shopButtonLabel": "Shop",
+    "titleText": "Your ultimate online store"
   }
 }

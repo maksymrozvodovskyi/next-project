@@ -12,7 +12,7 @@ export default function Footer() {
 						<Link href='/' className='text-2xl font-bold text-white mb-4 block'>
 							FakeStore
 						</Link>
-						<p className='text-gray-300 mb-6'>{t('desc')}</p>
+						<p className='text-gray-300 mb-6'>{t('descriptionText')}</p>
 						<div className='flex justify-center space-x-4'>
 							<a
 								href='#'
@@ -52,7 +52,7 @@ export default function Footer() {
 
 				<div className='border-t border-gray-700 py-6'>
 					<div className='flex md:flex-row justify-center items-center'>
-						<p className='text-gray-300 text-sm'>2024 FakeStore, {t('rights')}</p>
+						<p className='text-gray-300 text-sm'>2024 FakeStore, {t('rightsText')}</p>
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,7 @@ export type Props = {
 }
 
 export default function Hero({ categories, params }: Props) {
-	const t = useTranslations('hero')
+	const t = useTranslations()
 
 	const locale = params.locale
 
@@ -31,8 +31,12 @@ export default function Hero({ categories, params }: Props) {
 				</div>
 				<div className='mx-auto max-w-2xl py-32 sm:py-48 lg:py-56'>
 					<div className='text-center'>
-						<h1 className='text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl'>{t('title')}</h1>
-						<p className='mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8'>{t('desc')}</p>
+						<h1 className='text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl'>
+							{t('hero.titleText')}
+						</h1>
+						<p className='mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8'>
+							{t('hero.descriptionText')}
+						</p>
 						<div className='mt-10 flex flex-wrap items-center justify-center gap-2 md:flex-row'>
 							<HeroMenu categories={categories} />
 						</div>

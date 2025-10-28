@@ -10,9 +10,7 @@ export type Props = {
 }
 
 export default function HeroMenu({ categories }: Props) {
-	const t = useTranslations('hero')
-
-	const c = useTranslations('categories')
+	const t = useTranslations()
 
 	return (
 		<Menu as='div' className='relative'>
@@ -21,7 +19,7 @@ export default function HeroMenu({ categories }: Props) {
 				variant='outline'
 				className='bg-transparent border-white text-white hover:bg-white hover:text-gray-900 inline-flex items-center'
 			>
-				{t('button')}
+				{t('hero.shopButtonLabel')}
 			</MenuButton>
 			<MenuItems
 				transition
@@ -33,7 +31,7 @@ export default function HeroMenu({ categories }: Props) {
 							href={`/category/${category}`}
 							className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
 						>
-							{c(category)}
+							{t(`categories.${category}`)}
 						</Link>
 					</MenuItem>
 				))}
