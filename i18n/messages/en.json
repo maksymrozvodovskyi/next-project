@@ -2,8 +2,8 @@
   "categories": {
     "electronics": "Electronics",
     "jewelery": "Jewelry",
-    "men's clothing": "Men's clothing",
-    "women's clothing": "Women's clothing"
+    "mensClothing": "Men's clothing",
+    "womensClothing": "Women's clothing"
   },
   "footer": {
     "descriptionText": "Making the world a better place through constructing elegant hierarchies for your shopping needs",

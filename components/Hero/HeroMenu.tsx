@@ -4,6 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
+import { formatCategoryName, normalizeCategoryKey } from '@/lib/utils/utils'
 
 export type Props = {
 	categories: string[]
@@ -31,7 +32,9 @@ export default function HeroMenu({ categories }: Props) {
 							href={`/category/${category}`}
 							className='block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden capitalize hover:bg-gray-100 transition-colors'
 						>
-							{t(`categories.${category}`)}
+							{t(`categories.${normalizeCategoryKey(category)}`, {
+								default: formatCategoryName(category),
+							})}
 						</Link>
 					</MenuItem>
 				))}

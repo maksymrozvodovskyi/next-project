@@ -10,3 +10,10 @@ export function formatCategoryName(category: string): string {
 	const decoded = decodeURIComponent(category)
 	return decoded.replace(/\b\w/g, l => l.toUpperCase()).replace(/'[A-Z]/g, match => match.toLowerCase())
 }
+
+export const normalizeCategoryKey = (category: string) => {
+	return category
+		.toLowerCase()
+		.replace(/'/g, '')
+		.replace(/\s+([a-z])/g, (_, letter) => letter.toUpperCase())
+}

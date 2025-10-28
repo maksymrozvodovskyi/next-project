@@ -2,8 +2,8 @@
   "categories": {
     "electronics": "Електроніка",
     "jewelery": "Ювелірні вироби",
-    "men's clothing": "Чоловічий одяг",
-    "women's clothing": "Жіночий одяг"
+    "mensClothing": "Чоловічий одяг",
+    "womensClothing": "Жіночий одяг"
   },
   "footer": {
     "descriptionText": "Зробимо світ кращим, створюючи елегантні ієрархії для ваших покупок",

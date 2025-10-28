@@ -5,7 +5,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import CartButton from '../../features/cart/Cart/CartButton'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { formatCategoryName, classNames } from '../../lib/utils/utils'
+import { formatCategoryName, classNames, normalizeCategoryKey } from '../../lib/utils/utils'
 import LogoutButton from '../ui/LogoutButton'
 import { useAuthStore } from '../../stores/authStore'
 import LocaleSwitcher from '../ui/LocaleSwitcher'
@@ -78,7 +78,7 @@ export default function Header({ categories }: Props) {
 													href={`/category/${category}`}
 													className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 capitalize transition-colors'
 												>
-													{t(`categories.${category}`, {
+													{t(`categories.${normalizeCategoryKey(category)}`, {
 														default: formatCategoryName(category),
 													})}
 												</Link>
@@ -160,7 +160,7 @@ export default function Header({ categories }: Props) {
 						</>
 					)}
 					<div className='px-3 py-2'>
-						<div className='text-gray-300 text-base font-medium mb-1'>{t('header.categories')}</div>
+						<div className='text-gray-300 text-base font-medium mb-1'>{t('header.categoriesDropdownLabel')}</div>
 						<div className='pl-4 space-y-1'>
 							{categories.map(category => (
 								<DisclosureButton
@@ -169,7 +169,7 @@ export default function Header({ categories }: Props) {
 									href={`/category/${category}`}
 									className='block text-gray-400 hover:text-white hover:bg-white/5 rounded-md px-3 py-2 text-sm font-medium capitalize'
 								>
-									{t(`categories.${category}`, {
+									{t(`categories.${normalizeCategoryKey(category)}`, {
 										default: formatCategoryName(category),
 									})}
 								</DisclosureButton>
