@@ -1,7 +1,7 @@
-import { Product } from '@/types/productTypes'
-import { User } from '../../types/userTypes'
-import { RegisterRequest } from '@/types/registerTypes'
-import { LoginRequest } from '@/types/loginTypes'
+import { Product } from '../types/productTypes'
+import { User } from '../types/userTypes'
+import { RegisterRequest } from '../types/registerTypes'
+import { LoginRequest } from '../types/loginTypes'
 import { nextServer } from './api'
 
 export const register = async (data: RegisterRequest) => {

@@ -1,5 +1,5 @@
 import { getProductById } from '@/lib/api/clientApi'
-import { ProductDetails } from '@/components/ProductDetails'
+import { ProductDetails } from '@/features/products/ProductDetails'
 import { notFound } from 'next/navigation'
 
 export type Props = {

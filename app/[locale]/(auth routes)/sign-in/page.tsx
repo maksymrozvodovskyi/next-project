@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/authStore'
+import { Link } from '@/i18n/navigation'
 
 export default function SignIn() {
 	const router = useRouter()
@@ -35,9 +36,9 @@ export default function SignIn() {
 					<h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>Sign in</h2>
 					<p className='mt-2 text-center text-sm text-gray-600'>
 						Or{' '}
-						<a href='/sign-up' className='font-medium text-indigo-600 hover:text-indigo-500'>
+						<Link href='/sign-up' className='font-medium text-indigo-600 hover:text-indigo-500'>
 							Create account
-						</a>
+						</Link>
 					</p>
 				</div>
 				<form className='mt-8 space-y-6' onSubmit={handleSubmit}>

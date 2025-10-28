@@ -1,4 +1,4 @@
-import FilterPanel from '@/components/Filters/FilterPanel'
+import FilterPanel from '@/features/products/Filters/FilterPanel'
 
 export default async function CategoryLayout({ children }: { children: React.ReactNode }) {
 	return (

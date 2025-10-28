@@ -1,5 +1,5 @@
 import { getProductsByCategory } from '@/lib/api/clientApi'
-import ProductList from '@/components/ProductList'
+import ProductList from '@/features/products/ProductList'
 
 export type Props = {
 	params: Promise<{ id: string }>

@@ -2,8 +2,8 @@
 
 import { useState, useCallback } from 'react'
 import { PencilIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
-import { ProfileData } from '@/types/profileTypes'
-import { EditableField } from '@/components/EditableField'
+import { ProfileData } from '@/lib/types/profileTypes'
+import { EditableField } from '@/components/ui/EditableField'
 
 export default function ProfilePage() {
 	const [isEditing, setIsEditing] = useState(false)
