@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 
 interface AccordionContextType {
 	value: string | string[]

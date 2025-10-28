@@ -3,12 +3,12 @@
 import { Link } from '@/i18n/navigation'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
-import CartButton from '@/components/Cart/CartButton'
+import CartButton from '../../features/cart/Cart/CartButton'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { formatCategoryName, classNames } from '@/lib/utils'
-import LogoutButton from '../LogoutButton'
-import { useAuthStore } from '@/lib/store/authStore'
-import LocaleSwitcher from '../LocaleSwitcher/index'
+import { formatCategoryName, classNames } from '../../lib/utils/utils'
+import LogoutButton from '../ui/LogoutButton'
+import { useAuthStore } from '../../stores/authStore'
+import LocaleSwitcher from '../ui/LocaleSwitcher'
 import { useTranslations } from 'next-intl'
 
 type Props = {

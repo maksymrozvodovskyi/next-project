@@ -2,9 +2,9 @@
 
 import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
-import { Product } from '@/types/productTypes'
+import { Product } from '@/lib/types/productTypes'
 import { useFilters } from '@/hooks/use-filters'
-import { getFilteredProducts } from '@/lib/filter-utils'
+import { getFilteredProducts } from '@/lib/utils/filter-utils'
 
 export type Props = {
 	products?: Product[]

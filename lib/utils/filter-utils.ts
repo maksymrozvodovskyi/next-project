@@ -1,4 +1,4 @@
-import { Product } from '@/types/productTypes'
+import { Product } from '../types/productTypes'
 
 export interface URLFilterState {
 	searchQuery: string

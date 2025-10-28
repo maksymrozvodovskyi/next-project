@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { readDB } from '@/lib/db'
+import { readDB } from '@/lib/db/db'
 
 const STATIC_TOKEN = 'hardcoded-local-token-12345'
 
