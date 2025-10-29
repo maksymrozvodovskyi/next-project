@@ -58,6 +58,13 @@ export default function Header({ categories }: Props) {
 									</>
 								)}
 
+								<Link
+									href='/about-us'
+									className='text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
+								>
+									About Us
+								</Link>
+
 								<Menu as='div' className='relative z-50'>
 									<MenuButton
 										className={classNames(
