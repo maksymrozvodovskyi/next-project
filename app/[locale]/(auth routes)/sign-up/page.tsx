@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/authStore'
 import { Link } from '@/i18n/navigation'
+import { InputField } from '@/components/ui/InputField/InputField'
 
 export default function SignUp() {
 	const router = useRouter()
@@ -49,36 +50,9 @@ export default function SignUp() {
 					}}
 				>
 					<div className='rounded-md shadow-sm -space-y-px'>
-						<div>
-							<input
-								id='username'
-								name='username'
-								type='text'
-								required
-								placeholder='Username'
-								className='input-focus appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-							/>
-						</div>
-						<div>
-							<input
-								id='email'
-								name='email'
-								type='email'
-								required
-								placeholder='Email'
-								className='input-focus appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-							/>
-						</div>
-						<div>
-							<input
-								id='password'
-								name='password'
-								type='password'
-								required
-								placeholder='Password'
-								className='input-focus appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-							/>
-						</div>
+						<InputField id='username' name='username' type='text' required placeholder='Username' />
+						<InputField id='email' name='email' type='email' required placeholder='Email' />
+						<InputField id='password' name='password' type='password' required placeholder='Password' />
 					</div>
 
 					<button
