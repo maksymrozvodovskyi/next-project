@@ -1,8 +1,8 @@
 'use client'
 
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { useCartStore } from '../../lib/store/cartStore'
-import { Product } from '@/types/productTypes'
+import { useCartStore } from '@/stores/cartStore'
+import { Product } from '@/lib/types/productTypes'
 
 interface AddToCartButtonProps {
 	product: Product
