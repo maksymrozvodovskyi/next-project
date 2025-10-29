@@ -13,6 +13,19 @@ export async function generateMetadata({ params }: Props) {
 	return {
 		title: `Product: ${product?.title}`,
 		description: product?.description,
+		openGraph: {
+			title: `Note: ${product?.title}`,
+			description: product?.description,
+			images: [{ url: product.image, alt: product.title }],
+			siteName: 'FakeStore',
+			type: 'article',
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: product.title,
+			description: product.description,
+			images: [product.image],
+		},
 	}
 }
 
