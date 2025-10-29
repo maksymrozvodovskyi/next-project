@@ -41,25 +41,28 @@ export default function ProfilePage() {
 
 	return (
 		<div className='min-h-screen bg-gray-900 p-8'>
-			<div className='mx-auto max-w-7xl'>
+			<div className='mx-auto max-w-7xl animate-form-slide'>
 				<div className='px-4 sm:px-0 flex justify-between items-center'>
 					<div>
-						<h3 className='text-base/7 font-semibold text-white'>Applicant Information</h3>
-						<p className='mt-1 max-w-2xl text-sm/6 text-gray-400'>Personal details and application.</p>
+						<h3 className='text-base/7 font-semibold text-white animate-fade-in'>Applicant Information</h3>
+						<p className='mt-1 max-w-2xl text-sm/6 text-gray-400 animate-fade-in-delay'>
+							Personal details and application.
+						</p>
 					</div>
+
 					<div className='flex gap-2'>
 						{isEditing ? (
 							<>
 								<button
 									onClick={handleSave}
-									className='inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500'
+									className='btn-press inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-200'
 								>
 									<CheckIcon className='size-4' />
 									Save
 								</button>
 								<button
 									onClick={handleCancel}
-									className='inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500'
+									className='btn-press inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200'
 								>
 									<XMarkIcon className='size-4' />
 									Cancel
@@ -68,7 +71,7 @@ export default function ProfilePage() {
 						) : (
 							<button
 								onClick={handleEdit}
-								className='inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+								className='btn-press inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200'
 							>
 								<PencilIcon className='size-4' />
 								Edit
@@ -76,8 +79,9 @@ export default function ProfilePage() {
 						)}
 					</div>
 				</div>
-				<div className='mt-6 border-t border-white/10'>
-					<dl className='divide-y divide-white/10'>
+
+				<div className='mt-6 border-t border-white/10 animate-fade-in-delay'>
+					<dl className='divide-y divide-white/10 transition-all duration-500 ease-in-out'>
 						<EditableField
 							label='Full name'
 							value={isEditing ? editableData.fullName : profileData.fullName}

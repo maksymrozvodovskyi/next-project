@@ -127,11 +127,6 @@ export default function Header({ categories }: Props) {
 										</Link>
 									</MenuItem>
 									<MenuItem>
-										<a href='#' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
-											{t('header.settingsLinkLabel')}
-										</a>
-									</MenuItem>
-									<MenuItem>
 										<LogoutButton />
 									</MenuItem>
 								</MenuItems>
