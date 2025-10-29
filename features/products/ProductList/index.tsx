@@ -62,8 +62,8 @@ export default function ProductList({ products }: Props) {
 								alt={product.title || 'Product image'}
 								src={product.image}
 								width={400}
-								height={400}
-								className='aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-110'
+								height={500}
+								className='h-64 object-cover transition-transform duration-500 group-hover:scale-110'
 							/>
 						</div>
 						<div className='mt-4 flex justify-between'>
