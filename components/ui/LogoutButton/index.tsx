@@ -23,7 +23,7 @@ export default function LogoutButton() {
 			onClick={handleLogout}
 			className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 data-focus:bg-gray-100 disabled:opacity-50'
 		>
-			{t('logout')}
+			{t('logoutButtonLabel')}
 		</button>
 	)
 }
